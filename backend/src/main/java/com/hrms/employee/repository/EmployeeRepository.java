@@ -1,6 +1,6 @@
-package com.cognizant.hrms.repository;
+package com.hrms.employee.repository;
 
-import com.cognizant.hrms.model.Employee;
+import com.hrms.employee.model.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EmployeeRepository extends JpaRepository<Employee,Integer> {

@@ -1,4 +1,4 @@
-package com.cognizant.hrms.model;
+package com.hrms.employee.model;
 
 import jakarta.persistence.Entity;
 

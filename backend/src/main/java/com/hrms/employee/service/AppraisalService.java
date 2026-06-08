@@ -1,4 +1,4 @@
-package com.cognizant.hrms.service;
+package com.hrms.employee.service;
 
 import org.springframework.stereotype.Service;
 
