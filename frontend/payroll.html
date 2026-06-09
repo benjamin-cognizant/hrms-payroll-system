@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payroll Management Dashboard</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --sidebar: #1e1b4b;
+            --bg-color: #f3f4f6;
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+        }
+
+        /* Sidebar UI */
+        .sidebar {
+            width: 260px;
+            background-color: var(--sidebar);
+            color: var(--white);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 24px;
+            font-size: 1.25rem;
+            font-weight: bold;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            letter-spacing: 0.5px;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 20px 0;
+        }
+
+        .nav-item {
+            padding: 12px 24px;
+            color: #a5b4fc;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .nav-item:hover {
+            background-color: rgba(255,255,255,0.1);
+            color: var(--white);
+        }
+
+        .nav-item.active {
+            background-color: var(--primary);
+            color: var(--white);
+            font-weight: 500;
+            border-left: 4px solid #818cf8;
+        }
+
+        /* Main Content UI */
+        .main-content {
+            flex: 1;
+            padding: 32px;
+            overflow-y: auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            color: var(--text-main);
+        }
+
+        /* Action Buttons (Mapped to Controller Methods) */
+        .action-bar {
+            display: flex;
+            gap: 12px;
+            background: var(--white);
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 24px;
+        }
+
+        .btn {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--bg-color);
+        }
+
+        /* Data Table (Mapped to Model Attributes) */
+        .table-container {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f9fafb;
+            padding: 16px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+            vertical-align: middle;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background-color: #f9fafb;
+        }
+
+        /* Status Badges (Mapped to ENUMs) */
+        .badge {
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-draft { background: #f3f4f6; color: #4b5563; }
+        .status-processed { background: #dbeafe; color: #1e40af; }
+        .status-paid { background: #d1fae5; color: #065f46; }
+        .status-onhold { background: #fef3c7; color: #92400e; }
+
+        .currency {
+            font-family: monospace;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            HRMS Portal
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item">Recruitment</li>
+            <li class="nav-item">Employee Master</li>
+            <li class="nav-item">Attendance & Leave</li>
+            <li class="nav-item active">Payroll & Compliance</li>
+            <li class="nav-item">Performance Appraisal</li>
+        </ul>
+    </div>
+
+    <!-- Main Dashboard Workspace -->
+    <div class="main-content">
+        <div class="header">
+            <h1>Payroll Computation & Compliance</h1>
+            <div style="color: var(--text-muted); font-size: 0.9rem;">Current Cycle: <strong>Oct 2023</strong></div>
+        </div>
+
+        <!-- Controller Actions -->
+        <div class="action-bar">
+            <button class="btn btn-primary">▶ Run Payroll</button>
+            <button class="btn btn-outline">Compute Statutory Deductions</button>
+            <button class="btn btn-outline">File Compliance Report</button>
+        </div>
+
+        <!-- Payroll Records Table (Entity Model) -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Payroll ID</th>
+                        <th>Emp ID</th>
+                        <th>Pay Period</th>
+                        <th>Gross Salary</th>
+                        <th>Total Deductions</th>
+                        <th>Net Salary</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#PR-1001</td>
+                        <td>EMP-042</td>
+                        <td>Oct 2023</td>
+                        <td class="currency">$6,500.00</td>
+                        <td class="currency">$1,200.00</td>
+                        <td class="currency"><strong>$5,300.00</strong></td>
+                        <td><span class="badge status-paid">PAID</span></td>
+                        <td><button class="btn btn-outline" style="padding: 6px 12px; font-size: 0.8rem;">Generate Payslip</button></td>
+                    </tr>
+                    <tr>
+                        <td>#PR-1002</td>
+                        <td>EMP-089</td>
+                        <td>Oct 2023</td>
+                        <td class="currency">$8,200.00</td>
+                        <td class="currency">$1,850.00</td>
+                        <td class="currency"><strong>$6,350.00</strong></td>
+                        <td><span class="badge status-processed">PROCESSED</span></td>
+                        <td><button class="btn btn-outline" style="padding: 6px 12px; font-size: 0.8rem;">Generate Payslip</button></td>
+                    </tr>
+                    <tr>
+                        <td>#PR-1003</td>
+                        <td>EMP-104</td>
+                        <td>Oct 2023</td>
+                        <td class="currency">$4,800.00</td>
+                        <td class="currency">$900.00</td>
+                        <td class="currency"><strong>$3,900.00</strong></td>
+                        <td><span class="badge status-draft">DRAFT</span></td>
+                        <td><button class="btn btn-outline" style="padding: 6px 12px; font-size: 0.8rem;" disabled>Generate Payslip</button></td>
+                    </tr>
+                    <tr>
+                        <td>#PR-1004</td>
+                        <td>EMP-112</td>
+                        <td>Oct 2023</td>
+                        <td class="currency">$5,400.00</td>
+                        <td class="currency">$1,100.00</td>
+                        <td class="currency"><strong>$4,300.00</strong></td>
+                        <td><span class="badge status-onhold">ON_HOLD</span></td>
+                        <td><button class="btn btn-outline" style="padding: 6px 12px; font-size: 0.8rem;" disabled>Generate Payslip</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
