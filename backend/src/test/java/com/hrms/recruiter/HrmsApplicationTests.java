@@ -1,4 +1,4 @@
-package com.cognizant.hrms;
+package com.hrms.recruiter;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

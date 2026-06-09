@@ -1,4 +1,4 @@
-package com.cognizant.hrms;
+package com.hrms.recruiter;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

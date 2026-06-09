@@ -1,4 +1,4 @@
-package com.cognizant.hrms.model;
+package com.hrms.recruiter.model;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;

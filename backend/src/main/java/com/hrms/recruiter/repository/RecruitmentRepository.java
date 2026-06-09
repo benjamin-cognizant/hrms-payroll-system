@@ -1,8 +1,7 @@
-package com.cognizant.hrms.repository;
+package com.hrms.recruiter.repository;
 
-import com.cognizant.hrms.model.Candidate;
+import com.hrms.recruiter.model.Candidate;
 import org.springframework.data.jpa.repository.JpaRepository;
-import java.util.List;
 
 public interface RecruitmentRepository extends JpaRepository<Candidate, Integer> {
 
