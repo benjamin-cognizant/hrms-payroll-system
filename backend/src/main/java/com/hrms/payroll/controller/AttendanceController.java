@@ -1,4 +1,4 @@
-package com.cognizant.hrms.controller;
+package com.hrms.payroll.controller;
 
 import org.springframework.stereotype.Controller;
 

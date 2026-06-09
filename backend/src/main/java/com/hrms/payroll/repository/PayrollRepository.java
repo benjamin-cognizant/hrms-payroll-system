@@ -1,6 +1,6 @@
-package com.cognizant.hrms.repository;
+package com.hrms.payroll.repository;
 
-import com.cognizant.hrms.model.PayrollRecord;
+import com.hrms.payroll.model.PayrollRecord;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PayrollRepository extends JpaRepository<PayrollRecord,Integer> {

@@ -1,4 +1,4 @@
-package com.cognizant.hrms.model;
+package com.hrms.payroll.model;
 
 import jakarta.persistence.*;
 
