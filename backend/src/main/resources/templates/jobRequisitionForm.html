@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Job Requisition Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+        form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        p {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 5px;
+            display: block;
+        }
+        .success {
+            color: green;
+            background-color: #d4edda;
+            border: 1px solid #c3e6cb;
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .required {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h2>Create Job Requisition</h2>
+
+    <div th:if="${message}" class="success">
+        <p th:text="${message}"></p>
+    </div>
+
+    <form th:action="@{/jobRequisition/create}" th:object="${jobRequisition}" method="post">
+
+        <p>
+            <label>Job Title: <span class="required">*</span></label>
+            <input type="text" th:field="*{jobTitle}" required
+                   placeholder="e.g., Senior Software Engineer">
+            <span class="error" th:if="${#fields.hasErrors('jobTitle')}"
+                  th:errors="*{jobTitle}"></span>
+        </p>
+
+        <p>
+            <label>Department: <span class="required">*</span></label>
+            <input type="text" th:field="*{department}" required
+                   placeholder="e.g., IT, HR, Finance">
+            <span class="error" th:if="${#fields.hasErrors('department')}"
+                  th:errors="*{department}"></span>
+        </p>
+
+        <p>
+            <label>Number of Positions: <span class="required">*</span></label>
+            <input type="number" th:field="*{numberOfPositions}"
+                   min="1" max="100" required
+                   placeholder="Enter number">
+            <span class="error" th:if="${#fields.hasErrors('numberOfPositions')}"
+                  th:errors="*{numberOfPositions}"></span>
+        </p>
+
+        <p>
+            <label>Priority: <span class="required">*</span></label>
+            <select th:field="*{priority}" required>
+                <option value="">-- Select Priority --</option>
+                <option value="LOW">Low</option>
+                <option value="MEDIUM">Medium</option>
+                <option value="HIGH">High</option>
+                <option value="URGENT">Urgent</option>
+            </select>
+            <span class="error" th:if="${#fields.hasErrors('priority')}"
+                  th:errors="*{priority}"></span>
+        </p>
+
+        <p>
+            <label>Status: <span class="required">*</span></label>
+            <select th:field="*{status}" required>
+                <option value="">-- Select Status --</option>
+                <option value="OPEN">Open</option>
+                <option value="IN_PROGRESS">In Progress</option>
+                <option value="FILLED">Filled</option>
+                <option value="CLOSED">Closed</option>
+            </select>
+            <span class="error" th:if="${#fields.hasErrors('status')}"
+                  th:errors="*{status}"></span>
+        </p>
+
+        <p>
+            <label>Description:</label>
+            <textarea th:field="*{description}"
+                      maxlength="2000"
+                      placeholder="Enter job description, requirements, and responsibilities (max 2000 characters)"></textarea>
+            <span class="error" th:if="${#fields.hasErrors('description')}"
+                  th:errors="*{description}"></span>
+        </p>
+
+        <p>
+            <label>Requisition Date:</label>
+            <input type="date" th:field="*{requisitionDate}">
+            <span class="error" th:if="${#fields.hasErrors('requisitionDate')}"
+                  th:errors="*{requisitionDate}"></span>
+        </p>
+
+        <p>
+            <button type="submit">Create Job Requisition</button>
+        </p>
+    </form>
+
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="/jobRequisition/list" style="color: #2196F3; text-decoration: none;">
+            View All Job Requisitions
+        </a>
+    </div>
+</body>
+</html>
+
+
+
+
+

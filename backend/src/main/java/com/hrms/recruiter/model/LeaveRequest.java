@@ -8,5 +8,10 @@ import jakarta.persistence.Id;
 @Entity
 public class LeaveRequest {
 
-  
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer leaveId;
+
+    public Integer getLeaveId() { return leaveId; }
+    public void setLeaveId(Integer leaveId) { this.leaveId = leaveId; }
 }

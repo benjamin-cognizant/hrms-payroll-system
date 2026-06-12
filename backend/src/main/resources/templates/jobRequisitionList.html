@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Job Requisitions List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .no-data {
+            text-align: center;
+            padding: 20px;
+            color: #999;
+        }
+        .badge {
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .badge-urgent {
+            background-color: #ff4444;
+            color: white;
+        }
+        .badge-high {
+            background-color: #ff9800;
+            color: white;
+        }
+        .badge-medium {
+            background-color: #ffc107;
+            color: black;
+        }
+        .badge-low {
+            background-color: #2196F3;
+            color: white;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 20px 0;
+            background-color: #2196F3;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .btn:hover {
+            background-color: #0b7dda;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Job Requisitions</h2>
+
+        <a href="/jobRequisition/form" class="btn">Create New Requisition</a>
+
+        <table th:if="${requisitions != null and !requisitions.isEmpty()}">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Job Title</th>
+                    <th>Department</th>
+                    <th>Positions</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="req : ${requisitions}">
+                    <td th:text="${req.requisitionId}"></td>
+                    <td th:text="${req.jobTitle}"></td>
+                    <td th:text="${req.department}"></td>
+                    <td th:text="${req.numberOfPositions}"></td>
+                    <td>
+                        <span th:class="'badge badge-' + ${#strings.toLowerCase(req.priority)}"
+                              th:text="${req.priority}"></span>
+                    </td>
+                    <td th:text="${req.status}"></td>
+                    <td th:text="${req.requisitionDate}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div th:if="${requisitions == null or requisitions.isEmpty()}" class="no-data">
+            <p>No job requisitions found. Click "Create New Requisition" to add one.</p>
+        </div>
+    </div>
+</body>
+</html>
+
