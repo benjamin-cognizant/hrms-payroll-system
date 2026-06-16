@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <h3>Total leaves:</h3>
+    <h3>remaining leaves:</h3>
+    <h3>Used leaves:</h3>
+</div>
+<a th:href="@{/leave}"><button type="submit">Home</button></a>
+<form th:action="@{/leave/applyLeaveform}" method="post">
+    Enter From Date:
+    <input type="date" name="fromDate" placeholder="From date"/>
+    Enter To Date:
+    <input type="date" name="toDate" placeholder="To date"/>
+    Select Leave Type:
+    <select>
+
+    </select>
+<button type="submit">Submit</button>
+</form>
+</body>
+</html>

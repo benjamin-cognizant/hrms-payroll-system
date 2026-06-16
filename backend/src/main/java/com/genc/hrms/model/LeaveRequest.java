@@ -1,9 +1,7 @@
 package com.genc.hrms.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Future;
-import jakarta.validation.constraints.FutureOrPresent;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
 
@@ -29,6 +27,11 @@ public class LeaveRequest {
     @NotNull(message = "Please select a end date")
     @Future(message = "To date must be in the future")
     private LocalDate toDate;
+
+    @NotEmpty
+    @Column(name = "reason")
+    @Size(max = 500, message = "Reason cannot exceed 500 characters")
+    private String reason;
 
     public LocalDate getToDate() {
         return toDate;
