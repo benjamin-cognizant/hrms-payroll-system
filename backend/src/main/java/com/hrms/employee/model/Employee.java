@@ -3,77 +3,57 @@ package com.hrms.employee.model;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PastOrPresent;
+
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "Employee")
+@Table(name = "employees")
 public class Employee {
-
-    public enum EmploymentStatus {
-        ACTIVE, ON_LEAVE, RESIGNED, TERMINATED
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "employeeId")
-    private Integer employeeId;
+    private Integer id;
 
-    @NotBlank(message = "Employee code is required")
-    @Column(name = "employeeCode", unique = true, length = 20)
-    private String employeeCode;
+    @NotBlank(message = "Employee name is mandatory")
+    @Column(nullable = false, length = 100)
+    private String name;
 
-    @NotBlank(message = "Full name is required")
-    @Column(name = "fullName", length = 100)
-    private String fullName;
+    @NotBlank(message = "Role/Designation is mandatory")
+    @Column(nullable = false, length = 50)
+    private String role;
 
-    @NotBlank(message = "Department is required")
-    @Column(name = "department", length = 100)
+    @NotBlank(message = "Department is mandatory")
+    @Column(nullable = false, length = 50)
     private String department;
 
-    @NotBlank(message = "Designation is required")
-    @Column(name = "designation", length = 100)
-    private String designation;
+    @NotNull(message = "Salary is required")
+    @Positive(message = "Salary must be positive")
+    @Column(nullable = false)
+    private Double salary;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "managerId", referencedColumnName = "employeeId")
-    private Employee manager;
+    @NotNull(message = "Hire date is required")
+    @PastOrPresent(message = "Hire date cannot be in the future")
+    @Column(name = "hire_date", nullable = false)
+    private LocalDate hireDate;
 
-    @NotNull(message = "Employment status is required")
-    @Enumerated(EnumType.STRING)
-    @Column(name = "employmentStatus")
-    private EmploymentStatus employmentStatus;
+    // Getters and setters
+    public Integer getId() { return id; }
+    public void setId(Integer id) { this.id = id; }
 
-    // Constructors
-    public Employee() {}
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public Employee(String employeeCode, String fullName, String department,
-                    String designation, Employee manager, EmploymentStatus employmentStatus) {
-        this.employeeCode     = employeeCode;
-        this.fullName         = fullName;
-        this.department       = department;
-        this.designation      = designation;
-        this.manager          = manager;
-        this.employmentStatus = employmentStatus;
-    }
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
 
-    // Getters & Setters
-    public Integer getEmployeeId()                     { return employeeId; }
-    public void    setEmployeeId(Integer employeeId)   { this.employeeId = employeeId; }
+    public String getDepartment() { return department; }
+    public void setDepartment(String department) { this.department = department; }
 
-    public String getEmployeeCode()                    { return employeeCode; }
-    public void   setEmployeeCode(String employeeCode) { this.employeeCode = employeeCode; }
+    public Double getSalary() { return salary; }
+    public void setSalary(Double salary) { this.salary = salary; }
 
-    public String getFullName()                        { return fullName; }
-    public void   setFullName(String fullName)         { this.fullName = fullName; }
-
-    public String getDepartment()                      { return department; }
-    public void   setDepartment(String department)     { this.department = department; }
-
-    public String getDesignation()                     { return designation; }
-    public void   setDesignation(String designation)   { this.designation = designation; }
-
-    public Employee getManager()                       { return manager; }
-    public void     setManager(Employee manager)       { this.manager = manager; }
-
-    public EmploymentStatus getEmploymentStatus()                        { return employmentStatus; }
-    public void             setEmploymentStatus(EmploymentStatus status) { this.employmentStatus = status; }
+    public LocalDate getHireDate() { return hireDate; }
+    public void setHireDate(LocalDate hireDate) { this.hireDate = hireDate; }
 }
