@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Leave History</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #333;
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        /* Table Design */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            max-width: 900px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+            border: none; /* Softens the border="1" attribute */
+        }
+
+        th, td {
+            padding: 14px 18px;
+            text-align: left;
+            vertical-align: middle;
+        }
+
+        thead {
+            background-color: #2c3e50;
+            color: #ffffff;
+        }
+
+        th {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Target the Actions heading specifically to center it over buttons */
+        th[colspan="2"] {
+            text-align: center;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #e2e8f0;
+            transition: background-color 0.2s ease;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        tbody tr:hover {
+            background-color: #edf2f7;
+        }
+
+        td {
+            font-size: 14px;
+            color: #4a5568;
+        }
+
+        /* Universal Button Settings */
+        button {
+            border: none;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+        }
+
+        button:active {
+            transform: scale(0.96);
+        }
+
+        /* Target the individual inline action forms to keep buttons centered */
+        td form {
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Action Buttons Specifics based on their form actions */
+        form[action*="approveLeave"] button {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        form[action*="approveLeave"] button:hover {
+            background-color: #27ae60;
+        }
+
+        form[action*="rejectLeave"] button {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        form[action*="rejectLeave"] button:hover {
+            background-color: #c0392b;
+        }
+
+        /* Navigation Home Button Container Alignment */
+        a {
+            text-decoration: none;
+            align-self: flex-start;
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .btn-home {
+            background-color: #95a5a6;
+            color: white;
+            padding: 10px 24px;
+            font-size: 15px;
+            border-radius: 5px;
+        }
+
+        .btn-home:hover {
+            background-color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Pending Leave Requests</h2>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Leave ID</th>
+        <th>From Date</th>
+        <th>To Date</th>
+        <th>Leave Type</th>
+        <th>Status</th>
+        <th colspan="2">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="leave : ${leaves}">
+        <td th:text="${leave.leaveId}"></td>
+        <td th:text="${leave.fromDate}"></td>
+        <td th:text="${leave.toDate}"></td>
+        <td th:text="${leave.leaveType}"></td>
+        <td th:text="${leave.status}"></td>
+        <td>
+            <form th:action="@{/leave/approveLeave}" method="post" style="margin:0;">
+                <input type="hidden" name="leaveId" th:value="${leave.leaveId}" />
+                <button type="submit">Approve</button>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{/leave/rejectLeave}" method="post" style="margin:0;">
+                <input type="hidden" name="leaveId" th:value="${leave.leaveId}" />
+                <button type="submit">Reject</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/leave}"><button type="submit" class="btn-home">Home</button></a>
+
+</body>
+</html>
