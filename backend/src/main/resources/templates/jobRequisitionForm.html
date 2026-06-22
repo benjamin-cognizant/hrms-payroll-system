@@ -6,115 +6,97 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 50px auto;
+            background-color: #e3f2fd;
+            margin: 0;
             padding: 20px;
-            background-color: #f5f5f5;
         }
-        h2 {
-            color: #333;
-            text-align: center;
-        }
-        form {
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
             background-color: white;
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 5px;
         }
-        p {
-            margin-bottom: 20px;
+        h2 {
+            color: #1976d2;
+            text-align: center;
+            margin-top: 0;
         }
         label {
             display: block;
             margin-bottom: 5px;
-            color: #555;
-            font-weight: bold;
+            color: #333;
         }
-        input[type="text"],
-        input[type="number"],
-        input[type="date"],
-        select,
-        textarea {
+        input, select, textarea {
             width: 100%;
-            padding: 10px;
+            padding: 8px;
+            margin-bottom: 15px;
             border: 1px solid #ddd;
             border-radius: 4px;
             box-sizing: border-box;
-            font-size: 14px;
         }
         textarea {
+            min-height: 80px;
             resize: vertical;
-            min-height: 100px;
-        }
-        button {
-            width: 100%;
-            padding: 12px;
-            background-color: #2196F3;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        .error {
-            color: red;
-            font-size: 0.9em;
-            margin-top: 5px;
-            display: block;
-        }
-        .success {
-            color: green;
-            background-color: #d4edda;
-            border: 1px solid #c3e6cb;
-            padding: 12px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            text-align: center;
         }
         .required {
             color: red;
         }
+        .button {
+            width: 100%;
+            background-color: #1976d2;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .button:hover {
+            background-color: #1565c0;
+        }
+        .button-secondary {
+            background-color: #757575;
+            margin-top: 10px;
+        }
+        .button-secondary:hover {
+            background-color: #616161;
+        }
+        .message {
+            background-color: #c8e6c9;
+            color: #2e7d32;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
-    <h2>Create Job Requisition</h2>
+    <div class="container">
+        <h2 th:text="${jobRequisition != null and jobRequisition.requisitionId != null ? 'Edit Job Requisition' : 'Create Job Requisition'}">Create Job Requisition</h2>
+        <div th:if="${message}" class="message">
+            <p th:text="${message}" style="margin: 0;"></p>
+        </div>
 
-    <div th:if="${message}" class="success">
-        <p th:text="${message}"></p>
-    </div>
+        <form th:action="@{/jobRequisition/create}" th:object="${jobRequisition}" method="post">
+            <input type="hidden" th:field="*{requisitionId}">
 
-    <form th:action="@{/jobRequisition/create}" th:object="${jobRequisition}" method="post">
-
-        <p>
             <label>Job Title: <span class="required">*</span></label>
-            <input type="text" th:field="*{jobTitle}" required
-                   placeholder="e.g., Senior Software Engineer">
-            <span class="error" th:if="${#fields.hasErrors('jobTitle')}"
-                  th:errors="*{jobTitle}"></span>
-        </p>
+            <input type="text" th:field="*{jobTitle}" required placeholder="e.g., Senior Software Engineer">
+            <span class="error" th:if="${#fields.hasErrors('jobTitle')}" th:errors="*{jobTitle}"></span>
 
-        <p>
             <label>Department: <span class="required">*</span></label>
-            <input type="text" th:field="*{department}" required
-                   placeholder="e.g., IT, HR, Finance">
-            <span class="error" th:if="${#fields.hasErrors('department')}"
-                  th:errors="*{department}"></span>
-        </p>
+            <input type="text" th:field="*{department}" required placeholder="e.g., IT, HR, Finance">
+            <span class="error" th:if="${#fields.hasErrors('department')}" th:errors="*{department}"></span>
 
-        <p>
             <label>Number of Positions: <span class="required">*</span></label>
-            <input type="number" th:field="*{numberOfPositions}"
-                   min="1" max="100" required
-                   placeholder="Enter number">
-            <span class="error" th:if="${#fields.hasErrors('numberOfPositions')}"
-                  th:errors="*{numberOfPositions}"></span>
-        </p>
+            <input type="number" th:field="*{numberOfPositions}" min="1" max="100" required placeholder="Enter number">
+            <span class="error" th:if="${#fields.hasErrors('numberOfPositions')}" th:errors="*{numberOfPositions}"></span>
 
-        <p>
             <label>Priority: <span class="required">*</span></label>
             <select th:field="*{priority}" required>
                 <option value="">-- Select Priority --</option>
@@ -123,11 +105,8 @@
                 <option value="HIGH">High</option>
                 <option value="URGENT">Urgent</option>
             </select>
-            <span class="error" th:if="${#fields.hasErrors('priority')}"
-                  th:errors="*{priority}"></span>
-        </p>
+            <span class="error" th:if="${#fields.hasErrors('priority')}" th:errors="*{priority}"></span>
 
-        <p>
             <label>Status: <span class="required">*</span></label>
             <select th:field="*{status}" required>
                 <option value="">-- Select Status --</option>
@@ -136,34 +115,21 @@
                 <option value="FILLED">Filled</option>
                 <option value="CLOSED">Closed</option>
             </select>
-            <span class="error" th:if="${#fields.hasErrors('status')}"
-                  th:errors="*{status}"></span>
-        </p>
+            <span class="error" th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></span>
 
-        <p>
             <label>Description:</label>
-            <textarea th:field="*{description}"
-                      maxlength="2000"
-                      placeholder="Enter job description, requirements, and responsibilities (max 2000 characters)"></textarea>
-            <span class="error" th:if="${#fields.hasErrors('description')}"
-                  th:errors="*{description}"></span>
-        </p>
+            <textarea th:field="*{description}" maxlength="2000" placeholder="Enter job description (max 2000 characters)"></textarea>
+            <span class="error" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
 
-        <p>
-            <label>Requisition Date:</label>
-            <input type="date" th:field="*{requisitionDate}">
-            <span class="error" th:if="${#fields.hasErrors('requisitionDate')}"
-                  th:errors="*{requisitionDate}"></span>
-        </p>
+            <label>Requisition Date: <span class="required">*</span></label>
+            <input type="date" th:field="*{requisitionDate}" required th:min="${T(java.time.LocalDate).now().plusDays(1)}">
+            <span class="error" th:if="${#fields.hasErrors('requisitionDate')}" th:errors="*{requisitionDate}"></span>
 
-        <p>
-            <button type="submit">Create Job Requisition</button>
-        </p>
-    </form>
+            <button type="submit" class="button" th:text="${jobRequisition != null and jobRequisition.requisitionId != null ? 'Update Job Requisition' : 'Create Job Requisition'}">Create Job Requisition</button>
+        </form>
 
-    <div style="text-align: center; margin-top: 20px;">
-        <a href="/jobRequisition/list" style="color: #2196F3; text-decoration: none;">
-            View All Job Requisitions
+        <a href="/jobRequisition/list" style="text-decoration: none;">
+            <button class="button button-secondary">Back to Requisitions List</button>
         </a>
     </div>
 </body>

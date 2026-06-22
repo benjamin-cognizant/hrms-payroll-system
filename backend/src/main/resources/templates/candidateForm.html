@@ -6,123 +6,96 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            max-width: 600px;
-            margin: 50px auto;
             padding: 20px;
-            background-color: #f5f5f5;
         }
-        h2 {
-            color: #333;
-            text-align: center;
-        }
-        form {
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
             background-color: white;
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 5px;
         }
-        p {
-            margin-bottom: 20px;
+        h2 {
+            color: #1976d2;
+            text-align: center;
+            margin-top: 0;
         }
         label {
             display: block;
             margin-bottom: 5px;
-            color: #555;
-            font-weight: bold;
+            color: #333;
         }
-        input[type="text"],
-        input[type="number"],
-        select {
+        input, select {
             width: 100%;
-            padding: 10px;
+            padding: 8px;
+            margin-bottom: 15px;
             border: 1px solid #ddd;
             border-radius: 4px;
             box-sizing: border-box;
-            font-size: 14px;
-        }
-        input[type="text"]:focus,
-        input[type="number"]:focus,
-        select:focus {
-            outline: none;
-            border-color: #4CAF50;
-            box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
-        }
-        button {
-            width: 100%;
-            padding: 12px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-        .error {
-            color: red;
-            font-size: 0.9em;
-            margin-top: 5px;
-            display: block;
-        }
-        .success {
-            color: #0d47a1;
-            background-color: #e3f2fd;
-            border: 1px solid #90caf9;
-            padding: 12px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            text-align: center;
         }
         .required {
             color: red;
         }
+        .button {
+            width: 100%;
+            background-color: #1976d2;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .button:hover {
+            background-color: #1565c0;
+        }
+        .button-secondary {
+            background-color: #757575;
+            margin-top: 10px;
+        }
+        .button-secondary:hover {
+            background-color: #616161;
+        }
+        .message {
+            background-color: #c8e6c9;
+            color: #2e7d32;
+            padding: 10px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
-    <h2>Candidate Registration</h2>
-    <div th:if="${message}" class="success">
-        <p th:text="${message}"></p>
-    </div>
-    <form th:action="@{/candidateForm}" th:object="${candidate}" method="post">
-        <p>
+    <div class="container">
+        <h2 th:text="${candidate != null and candidate.candidateId != null ? 'Edit Candidate' : 'Add Candidate'}">Add Candidate</h2>
+
+        <div th:if="${message}" class="message">
+            <p th:text="${message}" style="margin: 0;"></p>
+        </div>
+
+        <form th:action="@{/candidateForm}" th:object="${candidate}" method="post">
+            <input type="hidden" th:field="*{candidateId}">
+
             <label>Full Name: <span class="required">*</span></label>
             <input type="text" th:field="*{fullName}" required placeholder="Enter full name">
-            <span class="error" th:if="${#fields.hasErrors('fullName')}"
-                  th:errors="*{fullName}"></span>
-        </p>
+            <span class="error" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></span>
 
-        <p>
             <label>Applied Role: <span class="required">*</span></label>
             <input type="text" th:field="*{appliedRole}" required placeholder="e.g., Software Engineer">
-            <span class="error" th:if="${#fields.hasErrors('appliedRole')}"
-                  th:errors="*{appliedRole}"></span>
-        </p>
+            <span class="error" th:if="${#fields.hasErrors('appliedRole')}" th:errors="*{appliedRole}"></span>
 
-        <p>
             <label>Experience (Years): <span class="required">*</span></label>
-            <input type="number" th:field="*{experienceYears}" step="1" min="0" max="50" required placeholder="Enter years of experience">
-            <span class="error" th:if="${#fields.hasErrors('experienceYears')}"
-                  th:errors="*{experienceYears}"></span>
-        </p>
+            <input type="number" th:field="*{experienceYears}" min="0" max="50" required placeholder="Enter years of experience">
+            <span class="error" th:if="${#fields.hasErrors('experienceYears')}" th:errors="*{experienceYears}"></span>
 
-        <p>
             <label>Interview Stage: <span class="required">*</span></label>
-            <select th:field="*{interviewStage}" required>
-                <option value="">-- Select Interview Stage --</option>
-                <option value="Initial Screening">Initial Screening</option>
-                <option value="Technical Round">Technical Round</option>
-                <option value="HR Round">HR Round</option>
-                <option value="Final Round">Final Round</option>
-                <option value="Completed">Completed</option>
-            </select>
-            <span class="error" th:if="${#fields.hasErrors('interviewStage')}"
-                  th:errors="*{interviewStage}"></span>
-        </p>
+            <input type="text" th:field="*{interviewStage}" required placeholder="e.g., Initial Screening, Technical Round">
+            <span class="error" th:if="${#fields.hasErrors('interviewStage')}" th:errors="*{interviewStage}"></span>
 
-        <p>
             <label>Status: <span class="required">*</span></label>
             <select th:field="*{candidateStatus}" required>
                 <option value="">-- Select Status --</option>
@@ -132,13 +105,17 @@
                 <option value="HIRED">HIRED</option>
                 <option value="REJECTED">REJECTED</option>
             </select>
-            <span class="error" th:if="${#fields.hasErrors('candidateStatus')}"
-                  th:errors="*{candidateStatus}"></span>
-        </p>
+            <span class="error" th:if="${#fields.hasErrors('candidateStatus')}" th:errors="*{candidateStatus}"></span>
 
-        <p>
-            <button type="submit">Submit</button>
-        </p>
-    </form>
+            <button type="submit" class="button">Submit</button>
+        </form>
+
+        <a href="/candidates/list" style="text-decoration: none;">
+            <button class="button button-secondary">View Candidates List</button>
+        </a>
+        <a href="/recruiter/dashboard" style="text-decoration: none;">
+            <button class="button button-secondary">Back to Dashboard</button>
+        </a>
+    </div>
 </body>
 </html>

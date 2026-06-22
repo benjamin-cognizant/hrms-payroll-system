@@ -2,10 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Job Requisitions List</title>
+    <title>Candidates List</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #e3f2fd;
+            margin: 0;
+            padding: 20px;
         }
         .container {
             max-width: 1200px;
@@ -79,50 +82,47 @@
 <body>
     <div class="container">
         <div class="header-section">
-            <h2>Job Requisitions</h2>
+            <h2>Candidates List</h2>
             <a href="/recruiter/dashboard" class="button">Back to Dashboard</a>
-            <a href="/jobRequisition/form" class="button">Create New Requisition</a>
+            <a href="/candidateForm" class="button">Add New Candidate</a>
         </div>
-
         <div th:if="${message}" class="message">
             <p th:text="${message}" style="margin: 0;"></p>
         </div>
 
-        <table th:if="${requisitions != null and !requisitions.isEmpty()}">
+        <table th:if="${candidates != null and !candidates.isEmpty()}">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Job Title</th>
-                    <th>Department</th>
-                    <th>Positions</th>
-                    <th>Priority</th>
+                    <th>Full Name</th>
+                    <th>Applied Role</th>
+                    <th>Experience (Years)</th>
+                    <th>Interview Stage</th>
                     <th>Status</th>
-                    <th>Date</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="req : ${requisitions}">
-                    <td th:text="${req.requisitionId}"></td>
-                    <td th:text="${req.jobTitle}"></td>
-                    <td th:text="${req.department}"></td>
-                    <td th:text="${req.numberOfPositions}"></td>
-                    <td th:text="${req.priority}"></td>
-                    <td th:text="${req.status}"></td>
-                    <td th:text="${req.requisitionDate}"></td>
+                <tr th:each="candidate : ${candidates}">
+                    <td th:text="${candidate.candidateId}"></td>
+                    <td th:text="${candidate.fullName}"></td>
+                    <td th:text="${candidate.appliedRole}"></td>
+                    <td th:text="${candidate.experienceYears}"></td>
+                    <td th:text="${candidate.interviewStage}"></td>
+                    <td th:text="${#strings.replace(candidate.candidateStatus, '_', ' ')}"></td>
                     <td>
-                        <a th:href="@{/jobRequisition/edit/{id}(id=${req.requisitionId})}" class="button button-small">Edit</a>
-                        <a th:href="@{/jobRequisition/delete/{id}(id=${req.requisitionId})}"
-                           th:data-title="${req.jobTitle}"
-                           onclick="return confirm('Are you sure you want to delete job requisition: ' + this.getAttribute('data-title') + '?')"
+                        <a th:href="@{/candidates/edit/{id}(id=${candidate.candidateId})}" class="button button-small">Edit</a>
+                        <a th:href="@{/candidates/delete/{id}(id=${candidate.candidateId})}"
+                           th:data-name="${candidate.fullName}"
+                           onclick="return confirm('Are you sure you want to delete candidate: ' + this.getAttribute('data-name') + '?')"
                            class="button button-small button-delete">Delete</a>
                     </td>
                 </tr>
             </tbody>
         </table>
 
-        <div th:if="${requisitions == null or requisitions.isEmpty()}" class="no-data">
-            <p>No job requisitions found. Click "Create New Requisition" to add one.</p>
+        <div th:if="${candidates == null or candidates.isEmpty()}" class="no-data">
+            <p>No candidates found. Click "Add New Candidate" to add one.</p>
         </div>
     </div>
 </body>

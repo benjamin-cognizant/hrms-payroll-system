@@ -11,14 +11,12 @@ public class JobRequisition {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer requisitionId;
 
-    @NotNull(message = "Job title cannot be null")
-    @NotEmpty(message = "Job title cannot be empty")
+    @NotBlank(message = "Job title cannot be empty")
     @Size(min = 2, max = 100, message = "Job title must be between 2 and 100 characters")
     @Column(length = 100)
     private String jobTitle;
 
-    @NotNull(message = "Department cannot be null")
-    @NotEmpty(message = "Department cannot be empty")
+    @NotBlank(message = "Department cannot be empty")
     @Size(min = 2, max = 100, message = "Department must be between 2 and 100 characters")
     @Column(length = 100)
     private String department;
@@ -39,7 +37,9 @@ public class JobRequisition {
     @Size(max = 2000, message = "Description must not exceed 2000 characters")
     @Column(length = 2000, columnDefinition = "TEXT")
     private String description;
-
+    
+    @NotNull(message = "Requisition date is mandatory")
+    @Future(message = "The date must be in the future")
     private LocalDate requisitionDate;
 
     public enum Priority {
