@@ -5,11 +5,17 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PastOrPresent;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "employees")
+@Data // generates getters, setters, toString, equals, hashCode
+@NoArgsConstructor
+@AllArgsConstructor
 public class Employee {
 
     @Id
@@ -38,22 +44,15 @@ public class Employee {
     @Column(name = "hire_date", nullable = false)
     private LocalDate hireDate;
 
-    // Getters and setters
-    public Integer getId() { return id; }
-    public void setId(Integer id) { this.id = id; }
+    // New fields to match service code
+    @Column(length = 50)
+    private String designation; // e.g. "Software Engineer", "Manager"
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    @Column(length = 20)
+    private String status; // e.g. "Active", "Inactive", "On Leave"
 
-    public String getRole() { return role; }
-    public void setRole(String role) { this.role = role; }
-
-    public String getDepartment() { return department; }
-    public void setDepartment(String department) { this.department = department; }
-
-    public Double getSalary() { return salary; }
-    public void setSalary(Double salary) { this.salary = salary; }
-
-    public LocalDate getHireDate() { return hireDate; }
-    public void setHireDate(LocalDate hireDate) { this.hireDate = hireDate; }
+    // Self-referencing relationship for manager assignment
+    @ManyToOne
+    @JoinColumn(name = "manager_id")
+    private Employee manager;
 }
