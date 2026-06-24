@@ -2,10 +2,17 @@ package com.hrms.recruiter.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "JobRequisition")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class JobRequisition {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,9 +44,9 @@ public class JobRequisition {
     @Size(max = 2000, message = "Description must not exceed 2000 characters")
     @Column(length = 2000, columnDefinition = "TEXT")
     private String description;
-    
+
     @NotNull(message = "Requisition date is mandatory")
-    @Future(message = "The date must be in the future")
+    @FutureOrPresent(message = "The date must be today or in the future")
     private LocalDate requisitionDate;
 
     public enum Priority {
@@ -49,71 +56,4 @@ public class JobRequisition {
     public enum Status {
         OPEN, IN_PROGRESS, FILLED, CLOSED
     }
-
-    // Getters and Setters
-    public Integer getRequisitionId() {
-        return requisitionId;
-    }
-
-    public void setRequisitionId(Integer requisitionId) {
-        this.requisitionId = requisitionId;
-    }
-
-    public String getJobTitle() {
-        return jobTitle;
-    }
-
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
-    }
-
-    public String getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-
-    public Integer getNumberOfPositions() {
-        return numberOfPositions;
-    }
-
-    public void setNumberOfPositions(Integer numberOfPositions) {
-        this.numberOfPositions = numberOfPositions;
-    }
-
-    public Priority getPriority() {
-        return priority;
-    }
-
-    public void setPriority(Priority priority) {
-        this.priority = priority;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public LocalDate getRequisitionDate() {
-        return requisitionDate;
-    }
-
-    public void setRequisitionDate(LocalDate requisitionDate) {
-        this.requisitionDate = requisitionDate;
-    }
 }
-
-

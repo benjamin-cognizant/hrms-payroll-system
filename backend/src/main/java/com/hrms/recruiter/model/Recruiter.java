@@ -2,9 +2,15 @@ package com.hrms.recruiter.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "Candidate")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Recruiter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,33 +35,11 @@ public class Recruiter {
     @Column(length = 50)
     private String interviewStage;
 
-
     @NotNull(message = "Candidate status cannot be null")
     @Enumerated(EnumType.STRING)
     private CandidateStatus candidateStatus;
+
     public enum CandidateStatus {
         APPLIED, IN_INTERVIEW, OFFERED, HIRED, REJECTED
     }
-    public Integer getCandidateId() { return candidateId; }
-    public void setCandidateId(Integer candidateId) { this.candidateId = candidateId; }
-
-    public String getFullName() { return fullName; }
-    public void setFullName(String fullName) { this.fullName = fullName; }
-
-    public String getAppliedRole() { return appliedRole; }
-    public void setAppliedRole(String appliedRole) { this.appliedRole = appliedRole; }
-
-    public Integer getExperienceYears() {
-        return experienceYears;
-    }
-
-    public void setExperienceYears(Integer experienceYears) {
-        this.experienceYears = experienceYears;
-    }
-
-    public String getInterviewStage() { return interviewStage; }
-    public void setInterviewStage(String interviewStage) { this.interviewStage = interviewStage; }
-
-    public CandidateStatus getCandidateStatus() { return candidateStatus; }
-    public void setCandidateStatus(CandidateStatus candidateStatus) { this.candidateStatus = candidateStatus; }
 }
