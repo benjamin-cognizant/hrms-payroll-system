@@ -1,7 +1,10 @@
 package com.hrms.payroll.controller;
 
+
+//import com.hrms.payroll.model.Employee;
 import com.hrms.payroll.model.Payroll;
 import com.hrms.payroll.model.Status;
+//import com.hrms.payroll.repository.EmployeeRepository;
 import com.hrms.payroll.repository.PayrollRepository;
 import com.hrms.payroll.service.PayrollService;
 import jakarta.validation.Valid;
@@ -9,12 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
-
+import java.util.List;
 
 @Controller
 public class PayrollController {
@@ -32,7 +32,6 @@ public class PayrollController {
     public String showForm(Model model) {
         model.addAttribute("record", new Payroll());
         model.addAttribute("key", Status.values());
-        // Pass all employees to populate the dropdown
         model.addAttribute("employees", employeeRepository.findAll());
         return "submit";
     }
@@ -66,13 +65,11 @@ public class PayrollController {
             return "submit";
         }
 
-        // 1. Calculate deductions
         double deductions = payrollService.deductions(payroll, payroll.getEmployee().getId());
 
-        // 2. Extract the gross salary from the attached employee
         double grossSalary = payroll.getEmployee().getBaseSalary();
 
-        // 3. Calculate net
+
         double netSalary = grossSalary - deductions;
 
         model.addAttribute("deduct", deductions);
@@ -80,22 +77,6 @@ public class PayrollController {
         model.addAttribute("netSalary", netSalary);
         return "deduct";
     }
-//    @PostMapping("/deductions")
-//    public String computeStatutoryDeductions(@Valid @ModelAttribute("record") Payroll payroll, BindingResult bindingResult, Model model) {
-//        if(bindingResult.hasErrors()) {
-//            model.addAttribute("key", Status.values());
-//            model.addAttribute("employees", employeeRepository.findAll());
-//            return "submit";
-//        }
-//
-//        double deductions = payrollService.deductions(payroll, payroll.getEmployee().getId());
-//        double netSalary = employee.getBaseSalary() - deductions;
-//
-//        model.addAttribute("deduct", deductions);
-//        model.addAttribute("grossSalary", payroll.getGrossSalary());
-//        model.addAttribute("netSalary", netSalary);
-//        return "deduct";
-//    }
 
     @GetMapping("/payrolls")
     public String getPayrolls(Model model){
@@ -119,7 +100,8 @@ public class PayrollController {
         if (payroll != null) {
             payroll.setStatus(Status.PAID);
             payrollService.savePayroll(payroll);
-            return "redirect:/payslip?employeeId=" + employeeId;
+
+            return "redirect:/payrolls";
         }
         return "redirect:/form";
     }
