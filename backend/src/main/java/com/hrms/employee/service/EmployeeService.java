@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Slf4j
@@ -46,11 +47,13 @@ public class EmployeeService {
         log.info("Updating employee with ID: {}", id);
         Employee existing = getEmployeeById(id);
 
-        // Update fields (example: name, department, designation)
         existing.setName(employee.getName());
         existing.setDepartment(employee.getDepartment());
         existing.setDesignation(employee.getDesignation());
         existing.setStatus(employee.getStatus());
+        existing.setRole(employee.getRole());
+        existing.setSalary(employee.getSalary());
+        existing.setHireDate(employee.getHireDate());
 
         Employee updated = employeeRepository.save(existing);
         log.info("Employee updated successfully with ID: {}", updated.getId());
@@ -75,5 +78,42 @@ public class EmployeeService {
 
         log.info("Manager assigned successfully to employee ID {}", id);
         return updated;
+    }
+
+    // Individual field accessors (matching controller mappings)
+    public Integer getId(Integer id) {
+        return getEmployeeById(id).getId();
+    }
+
+    public String getName(Integer id) {
+        return getEmployeeById(id).getName();
+    }
+
+    public String getRole(Integer id) {
+        return getEmployeeById(id).getRole();
+    }
+
+    public String getDepartment(Integer id) {
+        return getEmployeeById(id).getDepartment();
+    }
+
+    public Double getSalary(Integer id) {
+        return getEmployeeById(id).getSalary();
+    }
+
+    public LocalDate getHireDate(Integer id) {
+        return getEmployeeById(id).getHireDate();
+    }
+
+    public String getDesignation(Integer id) {
+        return getEmployeeById(id).getDesignation();
+    }
+
+    public String getStatus(Integer id) {
+        return getEmployeeById(id).getStatus();
+    }
+
+    public Employee getManager(Integer id) {
+        return getEmployeeById(id).getManager();
     }
 }
