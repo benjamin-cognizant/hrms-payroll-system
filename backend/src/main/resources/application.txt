@@ -1,0 +1,4 @@
+spring.datasource.url=jdbc:mysql://localhost:3306/hrms?createDatabaseIfNotExist=true
+spring.datasource.username=root
+spring.datasource.password=G81782*89457
+spring.jpa.hibernate.ddl-auto=update
