@@ -57,6 +57,7 @@ function loadSectionData(sectionId) {
             break;
         case 'candidates':
             loadCandidates();
+            loadRolesForCandidateDropdown();
             break;
         case 'requisitions':
             loadRequisitions();
@@ -67,7 +68,7 @@ function loadSectionData(sectionId) {
             break;
         case 'offers':
             loadOffers();
-            loadCandidatesForDropdown();
+            loadCandidatesForOfferDropdown();
             break;
     }
 }
@@ -363,22 +364,75 @@ document.getElementById('requisitionForm').addEventListener('submit', async func
 });
 
 // ========== INTERVIEWS ==========
+// Load roles from Job Requisitions for the candidate "Applied Role" dropdown
+async function loadRolesForCandidateDropdown() {
+    try {
+        const response = await fetch(`${API_BASE_URL}/job-requisitions`);
+        const requisitions = await response.json();
+
+        const roleSelect = document.getElementById('appliedRole');
+        // Only show OPEN or IN_PROGRESS requisitions
+        const openRoles = requisitions.filter(r => r.status === 'OPEN' || r.status === 'IN_PROGRESS');
+        const options = openRoles.map(r =>
+            `<option value="${r.jobTitle}">${r.jobTitle} - ${r.department}</option>`
+        ).join('');
+        roleSelect.innerHTML = '<option value="">Select Role</option>' + options;
+    } catch (error) {
+        console.error('Error loading roles for dropdown:', error);
+    }
+}
+
+// Load all candidates for the Interview dropdown
 async function loadCandidatesForDropdown() {
     try {
         const response = await fetch(`${API_BASE_URL}/candidates`);
         const candidates = await response.json();
 
         const interviewSelect = document.getElementById('interviewCandidateId');
-        const offerSelect = document.getElementById('offerCandidateId');
-
-        const options = candidates.map(c =>
-            `<option value="${c.candidateId}">${c.fullName} - ${c.appliedRole}</option>`
-        ).join('');
-
-        interviewSelect.innerHTML = '<option value="">Select Candidate</option>' + options;
-        offerSelect.innerHTML = '<option value="">Select Candidate</option>' + options;
+        if (interviewSelect) {
+            const options = candidates.map(c =>
+                `<option value="${c.candidateId}">${c.fullName} - ${c.appliedRole}</option>`
+            ).join('');
+            interviewSelect.innerHTML = '<option value="">Select Candidate</option>' + options;
+        }
     } catch (error) {
         console.error('Error loading candidates for dropdown:', error);
+    }
+}
+
+// Load only interview-completed candidates for the Offer dropdown
+async function loadCandidatesForOfferDropdown() {
+    try {
+        const response = await fetch(`${API_BASE_URL}/candidates`);
+        const candidates = await response.json();
+
+        // Fetch interviews to check which candidates have COMPLETED status
+        const interviewsResponse = await fetch(`${API_BASE_URL}/interviews`);
+        const interviews = await interviewsResponse.json();
+
+        // Get candidate IDs with at least one COMPLETED interview
+        const completedCandidateIds = new Set(
+            interviews
+                .filter(i => i.interviewStatus === 'COMPLETED')
+                .map(i => i.candidateId)
+        );
+
+        // Filter: only candidates with completed interview and not already OFFERED/HIRED
+        const eligibleCandidates = candidates.filter(c =>
+            completedCandidateIds.has(c.candidateId) &&
+            c.candidateStatus !== 'OFFERED' &&
+            c.candidateStatus !== 'HIRED'
+        );
+
+        const offerSelect = document.getElementById('offerCandidateId');
+        if (offerSelect) {
+            const options = eligibleCandidates.map(c =>
+                `<option value="${c.candidateId}">${c.fullName} - ${c.appliedRole}</option>`
+            ).join('');
+            offerSelect.innerHTML = '<option value="">Select Candidate</option>' + options;
+        }
+    } catch (error) {
+        console.error('Error loading candidates for offer dropdown:', error);
     }
 }
 
@@ -520,6 +574,7 @@ document.getElementById('interviewForm').addEventListener('submit', async functi
             showToast(editingInterviewId ? 'Interview updated successfully' : 'Interview scheduled successfully');
             cancelInterviewForm();
             loadInterviews();
+            loadCandidates(); // Refresh candidates list so status is updated based on interview
         } else {
             const error = await response.json();
             showToast(error.error || 'Error scheduling interview');
@@ -732,6 +787,8 @@ document.getElementById('offerForm').addEventListener('submit', async function(e
             showToast(editingOfferId ? 'Offer updated successfully' : 'Offer rolled out successfully');
             cancelOfferForm();
             loadOffers();
+            loadCandidates(); // Refresh candidates list so status shows as OFFERED
+            loadCandidatesForOfferDropdown(); // Refresh offer dropdown to remove offered candidate
         } else {
             const error = await response.json();
             showToast(error.error || 'Error rolling out offer');

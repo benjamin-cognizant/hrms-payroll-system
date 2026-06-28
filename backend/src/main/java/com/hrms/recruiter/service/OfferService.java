@@ -1,7 +1,9 @@
 package com.hrms.recruiter.service;
 
+import com.hrms.recruiter.model.Interview;
 import com.hrms.recruiter.model.Offer;
 import com.hrms.recruiter.model.Recruiter;
+import com.hrms.recruiter.repository.InterviewRepository;
 import com.hrms.recruiter.repository.OfferRepository;
 import com.hrms.recruiter.repository.RecruiterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +21,24 @@ public class OfferService {
     @Autowired
     private RecruiterRepository recruiterRepository;
 
+    @Autowired
+    private InterviewRepository interviewRepository;
+
     @Transactional
     public Offer rolloutOffer(Offer offer) {
-        // Update candidate status to OFFERED
+        // Validate candidate exists
         Recruiter candidate = recruiterRepository.findById(offer.getCandidateId())
                 .orElseThrow(() -> new RuntimeException("Candidate not found with ID: " + offer.getCandidateId()));
 
+        // Validate that candidate has at least one COMPLETED interview
+        List<Interview> interviews = interviewRepository.findByCandidateId(offer.getCandidateId());
+        boolean hasCompletedInterview = interviews.stream()
+                .anyMatch(i -> i.getInterviewStatus() == Interview.InterviewStatus.COMPLETED);
+        if (!hasCompletedInterview) {
+            throw new RuntimeException("Cannot rollout offer: candidate has not completed any interview");
+        }
+
+        // Update candidate status to OFFERED in the database
         candidate.setCandidateStatus(Recruiter.CandidateStatus.OFFERED);
         candidate.setInterviewStage("Offer Rolled Out");
         recruiterRepository.save(candidate);

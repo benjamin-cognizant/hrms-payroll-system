@@ -44,7 +44,30 @@ public class InterviewService {
         return interviewRepository.findByCandidateId(candidateId);
     }
     
+    @Transactional
     public Interview updateInterview(Interview interview) {
+        // Update candidate status based on interview status
+        Recruiter candidate = recruiterRepository.findById(interview.getCandidateId())
+                .orElseThrow(() -> new RuntimeException("Candidate not found with ID: " + interview.getCandidateId()));
+
+        switch (interview.getInterviewStatus()) {
+            case COMPLETED:
+                candidate.setCandidateStatus(Recruiter.CandidateStatus.IN_INTERVIEW);
+                candidate.setInterviewStage(interview.getInterviewRound() + " - Completed");
+                break;
+            case CANCELLED:
+            case NO_SHOW:
+                candidate.setCandidateStatus(Recruiter.CandidateStatus.REJECTED);
+                candidate.setInterviewStage(interview.getInterviewRound() + " - " + interview.getInterviewStatus().name());
+                break;
+            case SCHEDULED:
+            case RESCHEDULED:
+                candidate.setCandidateStatus(Recruiter.CandidateStatus.IN_INTERVIEW);
+                candidate.setInterviewStage(interview.getInterviewRound());
+                break;
+        }
+        recruiterRepository.save(candidate);
+
         return interviewRepository.save(interview);
     }
     
@@ -56,4 +79,5 @@ public class InterviewService {
         return interviewRepository.count();
     }
 }
+
 
