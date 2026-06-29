@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Dashboard — HRMS</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="css/employee.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- ══ TOP NAVBAR ══ -->
+    <nav class="topnav">
+        <div class="topnav-inner">
+
+            <div class="brand">
+                <div class="brand-icon"><i class="bi bi-people-fill"></i></div>
+                <div>
+                    <div class="brand-text">Cognizant HRMS</div>
+                    <div class="brand-sub">Employee Portal</div>
+                </div>
+            </div>
+
+            <div class="nav-tabs-hrms">
+                <button class="nav-item active" onclick="showSection('profile', this)">
+                    <i class="bi bi-person-circle"></i> My Profile
+                </button>
+                <button class="nav-item" onclick="showSection('attendance', this)">
+                    <i class="bi bi-calendar-check"></i> Attendance &amp; Leave
+                </button>
+                <button class="nav-item" onclick="showSection('payslip', this)">
+                    <i class="bi bi-receipt"></i> My Payslips
+                </button>
+                <button class="nav-item" onclick="showSection('appraisal', this)">
+                    <i class="bi bi-star-half"></i> My Appraisal
+                </button>
+            </div>
+
+            <div class="user-chip">
+                <div class="user-avatar">JD</div>
+                <div>
+                    <div class="user-name">John Doe</div>
+                    <div class="user-role">Employee</div>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- ══ MAIN ══ -->
+    <div class="main">
+
+        <div class="topbar">
+            <div>
+                <h4 class="page-title" id="pageTitle">My Profile</h4>
+                <div class="page-subtitle" id="pageSubtitle">Your personal details and employment information</div>
+            </div>
+            <div style="font-size:0.82rem; color:#6b7280;">
+                <i class="bi bi-calendar3 me-1"></i> June 2026
+            </div>
+        </div>
+
+        <!-- ══ SECTION: Profile ══ -->
+        <div class="section active" id="section-profile">
+            <div class="card">
+                <div class="card-head">
+                    <i class="bi bi-person-badge"></i>
+                    <h6>Employment Details</h6>
+                </div>
+                <div class="card-body-inner">
+                    <div class="profile-grid">
+                        <div class="profile-field">
+                            <label>Employee ID</label>
+                            <span>EMP-10045</span>
+                        </div>
+                        <div class="profile-field">
+                            <label>Full Name</label>
+                            <span>John Doe</span>
+                        </div>
+                        <div class="profile-field">
+                            <label>Department</label>
+                            <span>Engineering</span>
+                        </div>
+                        <div class="profile-field">
+                            <label>Designation</label>
+                            <span>Software Engineer</span>
+                        </div>
+                        <div class="profile-field">
+                            <label>Manager</label>
+                            <span>Sarah Chen</span>
+                        </div>
+                        <div class="profile-field">
+                            <label>Status</label>
+                            <span class="badge-status">Active</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══ SECTION: Attendance & Leave ══ -->
+        <div class="section" id="section-attendance">
+
+            <!-- Total Attendance (renamed from Leave Balance) -->
+            <div class="card">
+                <div class="card-head">
+                    <i class="bi bi-bar-chart-fill"></i>
+                    <h6>Total Attendance</h6>
+                </div>
+                <div class="card-body-inner">
+                    <div class="leave-chips">
+                        <div class="leave-chip">
+                            <div class="lc-count">8</div>
+                            <div class="lc-label">Casual Leave</div>
+                        </div>
+                        <div class="leave-chip">
+                            <div class="lc-count">5</div>
+                            <div class="lc-label">Sick Leave</div>
+                        </div>
+                        <div class="leave-chip">
+                            <div class="lc-count">12</div>
+                            <div class="lc-label">Earned Leave</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Apply Leave -->
+            <div class="card">
+                <div class="card-head">
+                    <i class="bi bi-send"></i>
+                    <h6>Apply for Leave</h6>
+                </div>
+                <div class="card-body-inner">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <label class="form-label">Leave Type</label>
+                            <select class="form-select">
+                                <option value="">Select type</option>
+                                <option>Casual Leave</option>
+                                <option>Sick Leave</option>
+                                <option>Earned Leave</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">From Date</label>
+                            <input type="date" class="form-control">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label">To Date</label>
+                            <input type="date" class="form-control">
+                        </div>
+                        <div class="col-md-12">
+                            <label class="form-label">Reason</label>
+                            <input type="text" class="form-control" placeholder="Brief reason for leave">
+                        </div>
+                        <div class="col-md-12">
+                            <button class="btn-primary-hrms"
+                                onclick="toast('Leave application submitted successfully.')">
+                                <i class="bi bi-send me-2"></i>Submit Application
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Leave History -->
+            <div class="card">
+                <div class="card-head">
+                    <i class="bi bi-clock-history"></i>
+                    <h6>Leave History</h6>
+                </div>
+                <div class="card-body-inner" style="padding:0;">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>From</th>
+                                <th>To</th>
+                                <th>Days</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Casual Leave</td>
+                                <td>12 May 2026</td>
+                                <td>13 May 2026</td>
+                                <td>2</td>
+                                <td><span class="pill pill-approved">Approved</span></td>
+                            </tr>
+                            <tr>
+                                <td>Sick Leave</td>
+                                <td>01 Apr 2026</td>
+                                <td>01 Apr 2026</td>
+                                <td>1</td>
+                                <td><span class="pill pill-approved">Approved</span></td>
+                            </tr>
+                            <tr>
+                                <td>Earned Leave</td>
+                                <td>10 Mar 2026</td>
+                                <td>14 Mar 2026</td>
+                                <td>5</td>
+                                <td><span class="pill pill-rejected">Rejected</span></td>
+                            </tr>
+                            <tr>
+                                <td>Casual Leave</td>
+                                <td>20 Jun 2026</td>
+                                <td>20 Jun 2026</td>
+                                <td>1</td>
+                                <td><span class="pill pill-applied">Applied</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ══ SECTION: Payslips ══ -->
+        <div class="section" id="section-payslip">
+            <div class="card">
+                <div class="card-head">
+                    <i class="bi bi-receipt-cutoff"></i>
+                    <h6>Payslip History</h6>
+                </div>
+                <div class="card-body-inner">
+                    <div class="payslip-row">
+                        <div>
+                            <div class="payslip-period">May 2026</div>
+                            <div style="font-size:0.75rem; color:#9ca3af;">Gross: ₹85,000 &nbsp;|&nbsp; Deductions:
+                                ₹12,400</div>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:14px;">
+                            <span class="payslip-net">₹72,600</span>
+                            <span class="pill pill-paid">Paid</span>
+                            <button class="btn-sm-outline" onclick="toast('Downloading payslip for May 2026…')">
+                                <i class="bi bi-download me-1"></i>Download
+                            </button>
+                        </div>
+                    </div>
+                    <div class="payslip-row">
+                        <div>
+                            <div class="payslip-period">April 2026</div>
+                            <div style="font-size:0.75rem; color:#9ca3af;">Gross: ₹85,000 &nbsp;|&nbsp; Deductions:
+                                ₹12,400</div>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:14px;">
+                            <span class="payslip-net">₹72,600</span>
+                            <span class="pill pill-paid">Paid</span>
+                            <button class="btn-sm-outline" onclick="toast('Downloading payslip for April 2026…')">
+                                <i class="bi bi-download me-1"></i>Download
+                            </button>
+                        </div>
+                    </div>
+                    <div class="payslip-row">
+                        <div>
+                            <div class="payslip-period">March 2026</div>
+                            <div style="font-size:0.75rem; color:#9ca3af;">Gross: ₹85,000 &nbsp;|&nbsp; Deductions:
+                                ₹12,400</div>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:14px;">
+                            <span class="payslip-net">₹72,600</span>
+                            <span class="pill pill-paid">Paid</span>
+                            <button class="btn-sm-outline" onclick="toast('Downloading payslip for March 2026…')">
+                                <i class="bi bi-download me-1"></i>Download
+                            </button>
+                        </div>
+                    </div>
+                    <div class="payslip-row">
+                        <div>
+                            <div class="payslip-period">June 2026</div>
+                            <div style="font-size:0.75rem; color:#9ca3af;">Gross: ₹85,000 &nbsp;|&nbsp; Deductions:
+                                ₹12,400</div>
+                        </div>
+                        <div style="display:flex; align-items:center; gap:14px;">
+                            <span class="payslip-net">₹72,600</span>
+                            <span class="pill pill-processed">Processing</span>
+                            <button class="btn-sm-outline" style="opacity:0.45; cursor:not-allowed;">
+                                <i class="bi bi-download me-1"></i>Download
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ══ SECTION: Appraisal ══ -->
+        <div class="section" id="section-appraisal">
+
+            <div class="card">
+                <div class="card-head">
+                    <i class="bi bi-arrow-repeat"></i>
+                    <h6>Appraisal Cycle — 2025–26</h6>
+                </div>
+                <div class="card-body-inner">
+                    <div class="appraisal-steps">
+                        <div class="appraisal-step">
+                            <div class="step-dot done"><i class="bi bi-check"></i></div>
+                            <div class="step-label done">Draft</div>
+                        </div>
+                        <div class="appraisal-step">
+                            <div class="step-dot current">2</div>
+                            <div class="step-label current">Self Review</div>
+                        </div>
+                        <div class="appraisal-step">
+                            <div class="step-dot">3</div>
+                            <div class="step-label">Manager Review</div>
+                        </div>
+                        <div class="appraisal-step">
+                            <div class="step-dot">4</div>
+                            <div class="step-label">Published</div>
+                        </div>
+                    </div>
+                    <div style="font-size:0.82rem; color:#6b7280;">
+                        Current status: <strong style="color:#1a237e;">Self Review</strong> — complete your self-review
+                        below before 30 June 2026.
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-head">
+                    <i class="bi bi-bullseye"></i>
+                    <h6>Goals for 2025–26</h6>
+                </div>
+                <div class="card-body-inner" style="padding:0;">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th>Goal</th>
+                                <th>Target</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Complete AWS certification</td>
+                                <td>Q2 2026</td>
+                                <td><span class="pill pill-approved">Achieved</span></td>
+                            </tr>
+                            <tr>
+                                <td>Lead at least 2 sprint cycles</td>
+                                <td>Q3 2026</td>
+                                <td><span class="pill pill-approved">Achieved</span></td>
+                            </tr>
+                            <tr>
+                                <td>Reduce bug backlog by 30%</td>
+                                <td>Q4 2026</td>
+                                <td><span class="pill pill-applied">In Progress</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-head">
+                    <i class="bi bi-pencil-square"></i>
+                    <h6>Self Review</h6>
+                </div>
+                <div class="card-body-inner">
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label class="form-label">Key Achievements</label>
+                            <textarea class="form-control" rows="3"
+                                placeholder="Describe your key contributions and achievements this cycle…"></textarea>
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Areas for Improvement</label>
+                            <textarea class="form-control" rows="2"
+                                placeholder="What would you like to improve next cycle?"></textarea>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Self Rating (out of 5)</label>
+                            <select class="form-select">
+                                <option value="">Select rating</option>
+                                <option>5 — Exceptional</option>
+                                <option>4 — Exceeds Expectations</option>
+                                <option>3 — Meets Expectations</option>
+                                <option>2 — Needs Improvement</option>
+                                <option>1 — Unsatisfactory</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn-primary-hrms"
+                                onclick="toast('Self review submitted. Awaiting manager review.')">
+                                <i class="bi bi-send me-2"></i>Submit Self Review
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="toast-box" id="toastBox"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="scripts/employee.js"></script>
+</body>
+
+</html>

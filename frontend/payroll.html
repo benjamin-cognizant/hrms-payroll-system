@@ -1,234 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payroll Management Dashboard</title>
-    <style>
-        :root {
-            --primary: #4f46e5;
-            --primary-hover: #4338ca;
-            --sidebar: #1e1b4b;
-            --bg-color: #f3f4f6;
-            --text-main: #111827;
-            --text-muted: #6b7280;
-            --border: #e5e7eb;
-            --white: #ffffff;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-        }
-
-        body {
-            display: flex;
-            height: 100vh;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-        }
-
-        /* Sidebar UI */
-        .sidebar {
-            width: 260px;
-            background-color: var(--sidebar);
-            color: var(--white);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .sidebar-header {
-            padding: 24px;
-            font-size: 1.25rem;
-            font-weight: bold;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            letter-spacing: 0.5px;
-        }
-
-        .nav-menu {
-            list-style: none;
-            padding: 20px 0;
-        }
-
-        .nav-item {
-            padding: 12px 24px;
-            color: #a5b4fc;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .nav-item:hover {
-            background-color: rgba(255,255,255,0.1);
-            color: var(--white);
-        }
-
-        .nav-item.active {
-            background-color: var(--primary);
-            color: var(--white);
-            font-weight: 500;
-            border-left: 4px solid #818cf8;
-        }
-
-        /* Main Content UI */
-        .main-content {
-            flex: 1;
-            padding: 32px;
-            overflow-y: auto;
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 32px;
-        }
-
-        .header h1 {
-            font-size: 1.8rem;
-            color: var(--text-main);
-        }
-
-        /* Action Buttons (Mapped to Controller Methods) */
-        .action-bar {
-            display: flex;
-            gap: 12px;
-            background: var(--white);
-            padding: 16px;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            margin-bottom: 24px;
-        }
-
-        .btn {
-            padding: 10px 16px;
-            border: none;
-            border-radius: 6px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: 0.2s;
-            font-size: 0.9rem;
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-            color: var(--white);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-hover);
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 1px solid var(--border);
-            color: var(--text-main);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--bg-color);
-        }
-
-        /* Data Table (Mapped to Model Attributes) */
-        .table-container {
-            background: var(--white);
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f9fafb;
-            padding: 16px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        td {
-            padding: 16px;
-            border-bottom: 1px solid var(--border);
-            font-size: 0.95rem;
-            vertical-align: middle;
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        tr:hover {
-            background-color: #f9fafb;
-        }
-
-        /* Status Badges (Mapped to ENUMs) */
-        .badge {
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-
-        .status-draft { background: #f3f4f6; color: #4b5563; }
-        .status-processed { background: #dbeafe; color: #1e40af; }
-        .status-paid { background: #d1fae5; color: #065f46; }
-        .status-onhold { background: #fef3c7; color: #92400e; }
-
-        .currency {
-            font-family: monospace;
-            font-size: 1rem;
-        }
-    </style>
+    <title>Payroll Officer Dashboard</title>
+    <link href="css/payroll.css" rel="stylesheet">
+    <link href="css/employee.css" rel="stylesheet">
 </head>
+
 <body>
 
-    <!-- Sidebar Navigation -->
-    <div class="sidebar">
-        <div class="sidebar-header">
-            HRMS Portal
-        </div>
-        <ul class="nav-menu">
-            <li class="nav-item">Recruitment</li>
-            <li class="nav-item">Employee Master</li>
-            <li class="nav-item">Attendance & Leave</li>
-            <li class="nav-item active">Payroll & Compliance</li>
-            <li class="nav-item">Performance Appraisal</li>
-        </ul>
-    </div>
+    <!-- ══ TOP NAVBAR ══ -->
+    <nav class="topnav">
+        <div class="topnav-inner">
 
-    <!-- Main Dashboard Workspace -->
-    <div class="main-content">
-        <div class="header">
-            <h1>Payroll Computation & Compliance</h1>
-            <div style="color: var(--text-muted); font-size: 0.9rem;">Current Cycle: <strong>Oct 2023</strong></div>
+            <div class="brand">
+                <div class="brand-icon"><i class="bi bi-people-fill"></i></div>
+                <div>
+                    <div class="brand-text">Cognizant HRMS</div>
+                    <div class="brand-sub">Payroll Portal</div>
+                </div>
+            </div>
+
+
+
+            <div class="user-chip">
+                <div class="user-avatar">JD</div>
+                <div>
+                    <div class="user-name">John Doe</div>
+                    <div class="user-role">Employee</div>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+    <div class="container">
+
+        <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h2 style="margin: 0; border: none; padding-bottom: 0;">Compliance & Analytics Report</h2>
+
+                <!-- ADDED: Pay Period Dropdown & Action Button Group -->
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <label style="margin: 0;">Period:</label>
+                    <select id="reportPeriod" style="padding: 8px; cursor: pointer;">
+                        <option value="ALL">All Periods</option>
+                        <option value="2026-08">August 2026</option>
+                        <option value="2026-06">June 2026</option>
+                        <option value="2026-03">March 2026</option>
+                        <option value="2026-01">January 2026</option>
+                    </select>
+                    <button class="btn btn-primary"
+                        onclick="alert('Compliance Report for ' + document.getElementById('reportPeriod').options[document.getElementById('reportPeriod').selectedIndex].text + ' Filed and Saved!')">File
+                        Compliance Report</button>
+                </div>
+            </div>
+
+            <div class="summary-grid">
+                <div class="summary-box">
+                    <h4>Total Gross Processed</h4>
+                    <div class="value" id="sumGross">₹59,000.00</div>
+                </div>
+                <div class="summary-box green">
+                    <h4>Total Deductions</h4>
+                    <div class="value" id="sumDed">₹11,800.00</div>
+                </div>
+                <div class="summary-box green">
+                    <h4>Total Net Payout</h4>
+                    <div class="value" id="sumNet">₹47,200.00</div>
+                </div>
+                <div class="summary-box">
+                    <h4>Average Salary</h4>
+                    <div class="value" id="avgSal">₹14,750.00</div>
+                </div>
+            </div>
         </div>
 
-        <!-- Controller Actions -->
-        <div class="action-bar">
-            <button class="btn btn-primary">▶ Run Payroll</button>
-            <button class="btn btn-outline">Compute Statutory Deductions</button>
-            <button class="btn btn-outline">File Compliance Report</button>
+        <div class="card">
+            <h2>Run New Payroll</h2>
+            <form onsubmit="event.preventDefault(); alert('Payroll data collected and sent to backend!');">
+                <div class="form-grid">
+
+                    <!-- Employee ID -->
+                    <div class="form-group">
+                        <label>Employee ID</label>
+                        <input type="text" id="empId" placeholder="Enter Employee ID" required>
+                    </div>
+
+                    <!-- Employee Name -->
+                    <div class="form-group">
+                        <label>Employee Name</label>
+                        <input type="text" id="empName" placeholder="Enter Employee Name" required>
+                    </div>
+
+                    <!-- Salary -->
+                    <div class="form-group">
+                        <label>Salary</label>
+                        <input type="number" id="salary" placeholder="Enter Salary" required>
+                    </div>
+
+                    <!-- Pay Period -->
+                    <div class="form-group">
+                        <label>Pay Period</label>
+                        <input type="month" id="payPeriod" required>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary" style="margin-bottom: 2px;">
+                            Process
+                        </button>
+                    </div>
+
+                </div>
+            </form>
         </div>
 
-        <!-- Payroll Records Table (Entity Model) -->
-        <div class="table-container">
+
+        <div class="card">
+            <h2>Payroll View (Pending & Completed)</h2>
             <table>
                 <thead>
                     <tr>
                         <th>Payroll ID</th>
-                        <th>Emp ID</th>
+                        <th>Employee</th>
                         <th>Pay Period</th>
                         <th>Gross Salary</th>
-                        <th>Total Deductions</th>
+                        <th>Deductions</th>
                         <th>Net Salary</th>
                         <th>Status</th>
                         <th>Actions</th>
@@ -236,49 +135,97 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>#PR-1001</td>
-                        <td>EMP-042</td>
-                        <td>Oct 2023</td>
-                        <td class="currency">$6,500.00</td>
-                        <td class="currency">$1,200.00</td>
-                        <td class="currency"><strong>$5,300.00</strong></td>
-                        <td><span class="badge status-paid">PAID</span></td>
-                        <td><button class="btn btn-outline" style="padding: 6px 12px; font-size: 0.8rem;">Generate Payslip</button></td>
+                        <td>1</td>
+                        <td>Satish (ID: 1)</td>
+                        <td>JAN-2026</td>
+                        <td>12000.0</td>
+                        <td>2400.0</td>
+                        <td>9600.0</td>
+                        <td class="status status-paid">PAID</td>
+                        <td>-</td>
                     </tr>
                     <tr>
-                        <td>#PR-1002</td>
-                        <td>EMP-089</td>
-                        <td>Oct 2023</td>
-                        <td class="currency">$8,200.00</td>
-                        <td class="currency">$1,850.00</td>
-                        <td class="currency"><strong>$6,350.00</strong></td>
-                        <td><span class="badge status-processed">PROCESSED</span></td>
-                        <td><button class="btn btn-outline" style="padding: 6px 12px; font-size: 0.8rem;">Generate Payslip</button></td>
+                        <td>10</td>
+                        <td>Satish (ID: 1)</td>
+                        <td>AUG-2026</td>
+                        <td>12000.0</td>
+                        <td>2400.0</td>
+                        <td>9600.0</td>
+                        <td class="status status-hold">ON_HOLD</td>
+                        <td><button class="btn btn-outline" style="padding: 5px 10px; font-size: 12px;"
+                                onclick="this.parentElement.previousElementSibling.className='status status-paid'; this.parentElement.previousElementSibling.innerText='PAID'; this.remove();">Mark
+                                as Paid</button></td>
                     </tr>
                     <tr>
-                        <td>#PR-1003</td>
-                        <td>EMP-104</td>
-                        <td>Oct 2023</td>
-                        <td class="currency">$4,800.00</td>
-                        <td class="currency">$900.00</td>
-                        <td class="currency"><strong>$3,900.00</strong></td>
-                        <td><span class="badge status-draft">DRAFT</span></td>
-                        <td><button class="btn btn-outline" style="padding: 6px 12px; font-size: 0.8rem;" disabled>Generate Payslip</button></td>
-                    </tr>
-                    <tr>
-                        <td>#PR-1004</td>
-                        <td>EMP-112</td>
-                        <td>Oct 2023</td>
-                        <td class="currency">$5,400.00</td>
-                        <td class="currency">$1,100.00</td>
-                        <td class="currency"><strong>$4,300.00</strong></td>
-                        <td><span class="badge status-onhold">ON_HOLD</span></td>
-                        <td><button class="btn btn-outline" style="padding: 6px 12px; font-size: 0.8rem;" disabled>Generate Payslip</button></td>
+                        <td>11</td>
+                        <td>Vishnu (ID: 6)</td>
+                        <td>MAR-2026</td>
+                        <td>30000.0</td>
+                        <td>6000.0</td>
+                        <td>24000.0</td>
+                        <td class="status status-paid">PAID</td>
+                        <td>-</td>
                     </tr>
                 </tbody>
             </table>
         </div>
+
     </div>
 
+    <script>
+        // Mock Employee Database (usually fetched from backend via AJAX/Fetch API)
+        const employeeData = [
+            { id: 1, name: 'Satish', salary: 12000 },
+            { id: 2, name: 'Jaya', salary: 15000 },
+            { id: 3, name: 'Kiran', salary: 20000 },
+            { id: 5, name: 'Venkata', salary: 21500 },
+            { id: 6, name: 'Vishnu', salary: 30000 }
+        ];
+
+        const searchInput = document.getElementById('empSearch');
+        const resultsContainer = document.getElementById('searchResults');
+        const idInput = document.getElementById('empId');
+        const salaryInput = document.getElementById('grossSalary');
+
+        // JS for Autocomplete Search
+        searchInput.addEventListener('input', function () {
+            const query = this.value.toLowerCase();
+            resultsContainer.innerHTML = '';
+
+            if (!query) {
+                resultsContainer.style.display = 'none';
+                return;
+            }
+
+            const filtered = employeeData.filter(emp => emp.name.toLowerCase().includes(query));
+
+            if (filtered.length > 0) {
+                resultsContainer.style.display = 'block';
+                filtered.forEach(emp => {
+                    const div = document.createElement('div');
+                    div.textContent = `${emp.name} (ID: ${emp.id})`;
+                    div.onclick = () => {
+                        // Populate fields on click
+                        searchInput.value = emp.name;
+                        idInput.value = emp.id;
+                        salaryInput.value = emp.salary;
+                        resultsContainer.style.display = 'none';
+                    };
+                    resultsContainer.appendChild(div);
+                });
+            } else {
+                resultsContainer.style.display = 'none';
+            }
+        });
+
+        // Hide dropdown if clicked outside
+        document.addEventListener('click', function (e) {
+            if (e.target !== searchInput) {
+                resultsContainer.style.display = 'none';
+            }
+        });
+    </script>
+
 </body>
+
 </html>
