@@ -34,7 +34,6 @@ public class RecruitmentRestController {
 
     @Autowired
     private OfferService offerService;
-
     // ============ Health Check ============
     @GetMapping("/health")
     public ResponseEntity<Map<String, String>> healthCheck() {
