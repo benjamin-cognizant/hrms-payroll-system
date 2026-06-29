@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRMS - Recruitment Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Top Navigation -->
+    <div class="topnav">
+        <div class="topnav-inner">
+            <div class="brand">
+                <div class="brand-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div>
+                    <div class="brand-text">HRMS System</div>
+                    <div class="brand-sub">Recruitment Module</div>
+                </div>
+            </div>
+
+            <div class="nav-tabs-hrms">
+                <button class="nav-item active" data-section="dashboard">
+                    <i class="fas fa-home"></i> Dashboard
+                </button>
+                <button class="nav-item" data-section="candidates">
+                    <i class="fas fa-user-tie"></i> Candidates
+                </button>
+                <button class="nav-item" data-section="requisitions">
+                    <i class="fas fa-briefcase"></i> Requisitions
+                </button>
+                <button class="nav-item" data-section="interviews">
+                    <i class="fas fa-calendar-alt"></i> Interviews
+                </button>
+                <button class="nav-item" data-section="offers">
+                    <i class="fas fa-file-contract"></i> Offers
+                </button>
+            </div>
+
+            <div class="user-chip">
+                <div class="user-avatar">HR</div>
+                <div>
+                    <div class="user-name">HR Manager</div>
+                    <div class="user-role">Recruiter</div>
+                </div>
+            </div>
+            <div class="auth-buttons">
+                <button class="btn-login" id="loginBtn" onclick="handleLogin()" style="display:none;">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                <button class="btn-logout" id="logoutBtn" onclick="handleLogout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main">
+        <!-- Dashboard Section -->
+        <div class="section active" id="dashboard">
+            <div class="topbar">
+                <div>
+                    <h1 class="page-title">Recruitment Dashboard</h1>
+                    <p class="page-subtitle">Overview of recruitment activities</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <div class="card">
+                        <div class="card-body-inner">
+                            <div class="leave-chip w-100">
+                                <div class="lc-count" id="candidateCount">0</div>
+                                <div class="lc-label">Total Candidates</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card">
+                        <div class="card-body-inner">
+                            <div class="leave-chip w-100">
+                                <div class="lc-count" id="requisitionCount">0</div>
+                                <div class="lc-label">Job Requisitions</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card">
+                        <div class="card-body-inner">
+                            <div class="leave-chip w-100">
+                                <div class="lc-count" id="interviewCount">0</div>
+                                <div class="lc-label">Interviews Scheduled</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <div class="card">
+                        <div class="card-body-inner">
+                            <div class="leave-chip w-100">
+                                <div class="lc-count" id="offerCount">0</div>
+                                <div class="lc-label">Offers Rolled Out</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Candidates Section -->
+        <div class="section" id="candidates">
+            <div class="topbar">
+                <div>
+                    <h1 class="page-title">Candidate Management</h1>
+                    <p class="page-subtitle">Add and manage candidates</p>
+                </div>
+                <button class="btn-primary-hrms" onclick="showAddCandidateForm()">
+                    <i class="fas fa-plus"></i> Add Candidate
+                </button>
+            </div>
+
+            <div class="card" id="candidateFormCard" style="display:none;">
+                <div class="card-head">
+                    <i class="fas fa-user-plus"></i>
+                    <h6 id="candidateFormTitle">Add New Candidate</h6>
+                </div>
+                <div class="card-body-inner">
+                    <form id="candidateForm">
+                        <input type="hidden" id="candidateId">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Full Name *</label>
+                                <input type="text" class="form-control" id="fullName" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Applied Role *</label>
+                                <select class="form-select" id="appliedRole" required>
+                                    <option value="">Select Role</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Experience Years *</label>
+                                <input type="number" class="form-control" id="experienceYears" min="0" max="50" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Interview Stage *</label>
+                                <input type="text" class="form-control" id="interviewStage" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Status *</label>
+                                <select class="form-select" id="candidateStatus" required>
+                                    <option value="APPLIED">Applied</option>
+                                    <option value="IN_INTERVIEW">In Interview</option>
+                                    <option value="OFFERED">Offered</option>
+                                    <option value="HIRED">Hired</option>
+                                    <option value="REJECTED">Rejected</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn-primary-hrms">
+                                <i class="fas fa-save"></i> Save Candidate
+                            </button>
+                            <button type="button" class="btn-sm-outline" onclick="cancelCandidateForm()">
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-head">
+                    <i class="fas fa-list"></i>
+                    <h6>Candidate List</h6>
+                </div>
+                <div class="card-body-inner">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Role</th>
+                                    <th>Experience</th>
+                                    <th>Stage</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="candidateTableBody">
+                                <tr>
+                                    <td colspan="7" class="text-center">Loading...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Requisitions Section -->
+        <div class="section" id="requisitions">
+            <div class="topbar">
+                <div>
+                    <h1 class="page-title">Job Requisitions</h1>
+                    <p class="page-subtitle">Create and manage job requisitions</p>
+                </div>
+                <button class="btn-primary-hrms" onclick="showAddRequisitionForm()">
+                    <i class="fas fa-plus"></i> Create Requisition
+                </button>
+            </div>
+
+            <div class="card" id="requisitionFormCard" style="display:none;">
+                <div class="card-head">
+                    <i class="fas fa-briefcase"></i>
+                    <h6 id="requisitionFormTitle">Create Job Requisition</h6>
+                </div>
+                <div class="card-body-inner">
+                    <form id="requisitionForm">
+                        <input type="hidden" id="requisitionId">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Job Title *</label>
+                                <input type="text" class="form-control" id="jobTitle" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Department *</label>
+                                <input type="text" class="form-control" id="department" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Number of Positions *</label>
+                                <input type="number" class="form-control" id="numberOfPositions" min="1" max="100" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Priority *</label>
+                                <select class="form-select" id="priority" required>
+                                    <option value="LOW">Low</option>
+                                    <option value="MEDIUM">Medium</option>
+                                    <option value="HIGH">High</option>
+                                    <option value="URGENT">Urgent</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Status *</label>
+                                <select class="form-select" id="status" required>
+                                    <option value="OPEN">Open</option>
+                                    <option value="IN_PROGRESS">In Progress</option>
+                                    <option value="FILLED">Filled</option>
+                                    <option value="CLOSED">Closed</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Requisition Date *</label>
+                                <input type="date" class="form-control" id="requisitionDate" required>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">Description</label>
+                                <textarea class="form-control" id="description" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn-primary-hrms">
+                                <i class="fas fa-save"></i> Save Requisition
+                            </button>
+                            <button type="button" class="btn-sm-outline" onclick="cancelRequisitionForm()">
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-head">
+                    <i class="fas fa-list"></i>
+                    <h6>Requisition List</h6>
+                </div>
+                <div class="card-body-inner">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Job Title</th>
+                                    <th>Department</th>
+                                    <th>Positions</th>
+                                    <th>Priority</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="requisitionTableBody">
+                                <tr>
+                                    <td colspan="8" class="text-center">Loading...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interviews Section -->
+        <div class="section" id="interviews">
+            <div class="topbar">
+                <div>
+                    <h1 class="page-title">Interview Management</h1>
+                    <p class="page-subtitle">Schedule and manage interviews</p>
+                </div>
+                <button class="btn-primary-hrms" onclick="showScheduleInterviewForm()">
+                    <i class="fas fa-calendar-plus"></i> Schedule Interview
+                </button>
+            </div>
+
+            <div class="card" id="interviewFormCard" style="display:none;">
+                <div class="card-head">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h6 id="interviewFormTitle">Schedule Interview</h6>
+                </div>
+                <div class="card-body-inner">
+                    <form id="interviewForm">
+                        <input type="hidden" id="interviewId">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Candidate *</label>
+                                <select class="form-select" id="interviewCandidateId" required>
+                                    <option value="">Select Candidate</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Interviewer Name *</label>
+                                <input type="text" class="form-control" id="interviewerName" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Interview Date & Time *</label>
+                                <input type="datetime-local" class="form-control" id="interviewDateTime" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Interview Round *</label>
+                                <select class="form-select" id="interviewRound" required>
+                                    <option value="Technical">Technical</option>
+                                    <option value="HR">HR</option>
+                                    <option value="Managerial">Managerial</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Interview Mode *</label>
+                                <select class="form-select" id="interviewMode" required>
+                                    <option value="Online">Online</option>
+                                    <option value="Offline">Offline</option>
+                                    <option value="Phone">Phone</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Status *</label>
+                                <select class="form-select" id="interviewStatus" required>
+                                    <option value="SCHEDULED">Scheduled</option>
+                                    <option value="COMPLETED">Completed</option>
+                                    <option value="CANCELLED">Cancelled</option>
+                                    <option value="RESCHEDULED">Rescheduled</option>
+                                    <option value="NO_SHOW">No Show</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Location</label>
+                                <input type="text" class="form-control" id="location">
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">Meeting Link</label>
+                                <input type="url" class="form-control" id="meetingLink" placeholder="https://meet.google.com/...">
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">Remarks</label>
+                                <textarea class="form-control" id="interviewRemarks" rows="2"></textarea>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn-primary-hrms">
+                                <i class="fas fa-save"></i> Schedule Interview
+                            </button>
+                            <button type="button" class="btn-sm-outline" onclick="cancelInterviewForm()">
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-head">
+                    <i class="fas fa-list"></i>
+                    <h6>Interview Schedule</h6>
+                </div>
+                <div class="card-body-inner">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Candidate</th>
+                                    <th>Interviewer</th>
+                                    <th>Date & Time</th>
+                                    <th>Round</th>
+                                    <th>Mode</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="interviewTableBody">
+                                <tr>
+                                    <td colspan="8" class="text-center">Loading...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Offers Section -->
+        <div class="section" id="offers">
+            <div class="topbar">
+                <div>
+                    <h1 class="page-title">Offer Management</h1>
+                    <p class="page-subtitle">Rollout and manage offers</p>
+                </div>
+                <button class="btn-primary-hrms" onclick="showRolloutOfferForm()">
+                    <i class="fas fa-file-contract"></i> Rollout Offer
+                </button>
+            </div>
+
+            <div class="card" id="offerFormCard" style="display:none;">
+                <div class="card-head">
+                    <i class="fas fa-file-contract"></i>
+                    <h6 id="offerFormTitle">Rollout Offer Letter</h6>
+                </div>
+                <div class="card-body-inner">
+                    <form id="offerForm">
+                        <input type="hidden" id="offerId">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Candidate *</label>
+                                <select class="form-select" id="offerCandidateId" required>
+                                    <option value="">Select Candidate</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Position Offered *</label>
+                                <input type="text" class="form-control" id="positionOffered" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Department *</label>
+                                <input type="text" class="form-control" id="offerDepartment" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Salary Offered *</label>
+                                <input type="number" class="form-control" id="salaryOffered" step="0.01" min="0" required>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Offer Status *</label>
+                                <select class="form-select" id="offerStatus" required>
+                                    <option value="DRAFTED">Drafted</option>
+                                    <option value="SENT">Sent</option>
+                                    <option value="ACCEPTED">Accepted</option>
+                                    <option value="REJECTED">Rejected</option>
+                                    <option value="WITHDRAWN">Withdrawn</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Offer Date *</label>
+                                <input type="date" class="form-control" id="offerDate" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Joining Date *</label>
+                                <input type="date" class="form-control" id="joiningDate" required>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">Additional Benefits</label>
+                                <textarea class="form-control" id="additionalBenefits" rows="2" placeholder="e.g., Health Insurance, Stock Options, etc."></textarea>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label class="form-label">Remarks</label>
+                                <textarea class="form-control" id="offerRemarks" rows="2"></textarea>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2">
+                            <button type="submit" class="btn-primary-hrms">
+                                <i class="fas fa-save"></i> Rollout Offer
+                            </button>
+                            <button type="button" class="btn-sm-outline" onclick="cancelOfferForm()">
+                                Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Offer Detail View Card -->
+            <div class="card" id="offerDetailCard" style="display:none;">
+                <div class="card-head">
+                    <i class="fas fa-file-contract"></i>
+                    <h6>Offer Letter Details</h6>
+                </div>
+                <div class="card-body-inner">
+                    <!-- Candidate Information Section -->
+                    <div class="detail-section">
+                        <h6 class="section-title">
+                            <i class="fas fa-user"></i> Candidate Information
+                        </h6>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4">
+                                <div class="detail-item">
+                                    <label>Full Name:</label>
+                                    <span id="detail-candidateName"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="detail-item">
+                                    <label>Email:</label>
+                                    <span id="detail-candidateEmail"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="detail-item">
+                                    <label>Phone:</label>
+                                    <span id="detail-candidatePhone"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="detail-item">
+                                    <label>Applied Role:</label>
+                                    <span id="detail-appliedRole"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="detail-item">
+                                    <label>Experience:</label>
+                                    <span id="detail-experience"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="detail-item">
+                                    <label>Current Status:</label>
+                                    <span id="detail-candidateStatus"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <!-- Offer Details Section -->
+                    <div class="detail-section">
+                        <h6 class="section-title">
+                            <i class="fas fa-file-contract"></i> Offer Details
+                        </h6>
+                        <div class="row">
+                            <div class="col-md-6 col-lg-4">
+                                <div class="detail-item">
+                                    <label>Offer ID:</label>
+                                    <span id="detail-offerId"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="detail-item">
+                                    <label>Position Offered:</label>
+                                    <span id="detail-position"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="detail-item">
+                                    <label>Department:</label>
+                                    <span id="detail-department"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="detail-item">
+                                    <label>Salary Offered:</label>
+                                    <span id="detail-salary" class="text-primary fw-bold"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="detail-item">
+                                    <label>Offer Date:</label>
+                                    <span id="detail-offerDate"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4">
+                                <div class="detail-item">
+                                    <label>Joining Date:</label>
+                                    <span id="detail-joiningDate"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="detail-item">
+                                    <label>Offer Status:</label>
+                                    <span id="detail-offerStatus"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="detail-item">
+                                    <label>Additional Benefits:</label>
+                                    <p id="detail-benefits" class="text-muted mb-0"></p>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="detail-item">
+                                    <label>Remarks:</label>
+                                    <p id="detail-remarks" class="text-muted mb-0"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2 mt-3">
+                        <button class="btn-primary-hrms" onclick="editOfferFromDetail()">
+                            <i class="fas fa-edit"></i> Edit Offer
+                        </button>
+                        <button class="btn-sm-outline" onclick="closeOfferDetail()">
+                            <i class="fas fa-arrow-left"></i> Back to List
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-head">
+                    <i class="fas fa-list"></i>
+                    <h6>Offer List</h6>
+                </div>
+                <div class="card-body-inner">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Candidate</th>
+                                    <th>Position</th>
+                                    <th>Department</th>
+                                    <th>Salary</th>
+                                    <th>Offer Date</th>
+                                    <th>Joining Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="offerTableBody">
+                                <tr>
+                                    <td colspan="9" class="text-center">Loading...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-box" id="toastBox"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
