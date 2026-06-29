@@ -1,10 +1,13 @@
-package com.hrms.recruiter;
+package com.hrms.employee;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HrmsApplication {
+public class Application {
+
 	public static void main(String[] args) {
-		SpringApplication.run(HrmsApplication.class, args);
+		SpringApplication.run(Application.class);
 	}
+
 }
