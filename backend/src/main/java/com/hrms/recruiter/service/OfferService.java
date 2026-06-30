@@ -6,6 +6,8 @@ import com.hrms.recruiter.model.Recruiter;
 import com.hrms.recruiter.repository.InterviewRepository;
 import com.hrms.recruiter.repository.OfferRepository;
 import com.hrms.recruiter.repository.RecruiterRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +16,8 @@ import java.util.List;
 
 @Service
 public class OfferService {
+
+    private static final Logger logger = LoggerFactory.getLogger(OfferService.class);
 
     @Autowired
     private OfferRepository offerRepository;
@@ -26,15 +30,20 @@ public class OfferService {
 
     @Transactional
     public Offer rolloutOffer(Offer offer) {
+        logger.info("Rolling out offer for candidate ID: {}", offer.getCandidateId());
         // Validate candidate exists
         Recruiter candidate = recruiterRepository.findById(offer.getCandidateId())
-                .orElseThrow(() -> new RuntimeException("Candidate not found with ID: " + offer.getCandidateId()));
+                .orElseThrow(() -> {
+                    logger.error("Candidate not found with ID: {}", offer.getCandidateId());
+                    return new RuntimeException("Candidate not found with ID: " + offer.getCandidateId());
+                });
 
         // Validate that candidate has at least one COMPLETED interview
         List<Interview> interviews = interviewRepository.findByCandidateId(offer.getCandidateId());
         boolean hasCompletedInterview = interviews.stream()
                 .anyMatch(i -> i.getInterviewStatus() == Interview.InterviewStatus.COMPLETED);
         if (!hasCompletedInterview) {
+            logger.error("Cannot rollout offer: candidate ID {} has not completed any interview", offer.getCandidateId());
             throw new RuntimeException("Cannot rollout offer: candidate has not completed any interview");
         }
 
@@ -43,50 +52,67 @@ public class OfferService {
         candidate.setInterviewStage("Offer Rolled Out");
         recruiterRepository.save(candidate);
 
-        return offerRepository.save(offer);
+        Offer saved = offerRepository.save(offer);
+        logger.info("Offer rolled out successfully with ID: {}", saved.getOfferId());
+        return saved;
     }
 
     public List<Offer> getAllOffers() {
+        logger.debug("Retrieving all offers");
         return offerRepository.findAll();
     }
 
     public Offer getOfferById(Integer id) {
+        logger.debug("Retrieving offer by ID: {}", id);
         return offerRepository.findById(id).orElse(null);
     }
 
     public List<Offer> getOffersByCandidateId(Integer candidateId) {
+        logger.debug("Retrieving offers for candidate ID: {}", candidateId);
         return offerRepository.findByCandidateId(candidateId);
     }
 
     public Offer updateOffer(Offer offer) {
+        logger.info("Updating offer with ID: {}", offer.getOfferId());
         return offerRepository.save(offer);
     }
 
     public void deleteOffer(Integer id) {
+        logger.info("Deleting offer with ID: {}", id);
         offerRepository.deleteById(id);
     }
 
     public long getOfferCount() {
+        logger.debug("Getting offer count");
         return offerRepository.count();
     }
 
     @Transactional
     public Offer updateOfferStatus(Integer offerId, Offer.OfferStatus newStatus) {
+        logger.info("Updating offer status for ID: {} to {}", offerId, newStatus);
         Offer offer = offerRepository.findById(offerId)
-                .orElseThrow(() -> new RuntimeException("Offer not found with ID: " + offerId));
+                .orElseThrow(() -> {
+                    logger.error("Offer not found with ID: {}", offerId);
+                    return new RuntimeException("Offer not found with ID: " + offerId);
+                });
 
         offer.setOfferStatus(newStatus);
 
         // If offer is accepted, update candidate status to HIRED
         if (newStatus == Offer.OfferStatus.ACCEPTED) {
+            logger.info("Offer accepted - updating candidate status to HIRED for candidate ID: {}", offer.getCandidateId());
             Recruiter candidate = recruiterRepository.findById(offer.getCandidateId())
-                    .orElseThrow(() -> new RuntimeException("Candidate not found"));
+                    .orElseThrow(() -> {
+                        logger.error("Candidate not found for offer ID: {}", offerId);
+                        return new RuntimeException("Candidate not found");
+                    });
             candidate.setCandidateStatus(Recruiter.CandidateStatus.HIRED);
             candidate.setInterviewStage("Hired");
             recruiterRepository.save(candidate);
         }
 
-        return offerRepository.save(offer);
+        Offer updated = offerRepository.save(offer);
+        logger.info("Offer status updated successfully for ID: {}", offerId);
+        return updated;
     }
 }
-
