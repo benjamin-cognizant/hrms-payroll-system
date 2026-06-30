@@ -20,7 +20,7 @@ public class JobRequisitionService {
     public JobRequisition createJobRequisition(JobRequisition jobRequisition) {
         logger.info("Creating job requisition: {}", jobRequisition.getJobTitle());
         JobRequisition saved = jobRequisitionRepository.save(jobRequisition);
-        logger.debug("Job requisition created with ID: {}", saved.getRequisitionId());
+        logger.debug("Job requisition created with this ID: {}", saved.getRequisitionId());
         return saved;
     }
 
