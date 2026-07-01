@@ -1,5 +1,6 @@
 package com.hrms.recruiter.controller;
 
+import com.hrms.recruiter.dto.HiredCandidateDTO;
 import com.hrms.recruiter.model.Interview;
 import com.hrms.recruiter.model.JobRequisition;
 import com.hrms.recruiter.model.Offer;
@@ -345,6 +346,19 @@ public class RecruitmentRestController {
         offerService.deleteOffer(id);
         logger.info("Offer deleted successfully with ID: {}", id);
         return ResponseEntity.ok(Map.of("message", "Offer deleted successfully"));
+    }
+
+    // ============ Hired Candidate DTO (for Employee Module) ============
+    @GetMapping("/hired-candidates/{offerId}")
+    public ResponseEntity<?> getHiredCandidateDTO(@PathVariable Integer offerId) {
+        logger.info("Fetching hired candidate DTO for offer ID: {}", offerId);
+        try {
+            HiredCandidateDTO dto = offerService.getHiredCandidateDTO(offerId);
+            return ResponseEntity.ok(dto);
+        } catch (Exception e) {
+            logger.error("Error fetching hired candidate DTO: {}", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of("error", e.getMessage()));
+        }
     }
 }
 

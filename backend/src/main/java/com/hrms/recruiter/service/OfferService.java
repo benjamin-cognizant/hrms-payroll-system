@@ -1,5 +1,6 @@
 package com.hrms.recruiter.service;
 
+import com.hrms.recruiter.dto.HiredCandidateDTO;
 import com.hrms.recruiter.model.Interview;
 import com.hrms.recruiter.model.Offer;
 import com.hrms.recruiter.model.Recruiter;
@@ -109,10 +110,50 @@ public class OfferService {
             candidate.setCandidateStatus(Recruiter.CandidateStatus.HIRED);
             candidate.setInterviewStage("Hired");
             recruiterRepository.save(candidate);
+
+            // Build DTO for Employee module
+            HiredCandidateDTO hiredDTO = buildHiredCandidateDTO(candidate, offer);
+            logger.info("HiredCandidateDTO ready for Employee module: {}", hiredDTO);
         }
 
         Offer updated = offerRepository.save(offer);
         logger.info("Offer status updated successfully for ID: {}", offerId);
         return updated;
+    }
+
+    /**
+     * Get HiredCandidateDTO for a given offer ID.
+     * Only works for offers with ACCEPTED status.
+     * Employee module can call this to fetch hired candidate data.
+     */
+    public HiredCandidateDTO getHiredCandidateDTO(Integer offerId) {
+        Offer offer = offerRepository.findById(offerId)
+                .orElseThrow(() -> new RuntimeException("Offer not found with ID: " + offerId));
+
+        if (offer.getOfferStatus() != Offer.OfferStatus.ACCEPTED) {
+            throw new RuntimeException("Offer is not in ACCEPTED status. Current status: " + offer.getOfferStatus());
+        }
+
+        Recruiter candidate = recruiterRepository.findById(offer.getCandidateId())
+                .orElseThrow(() -> new RuntimeException("Candidate not found for offer ID: " + offerId));
+
+        return buildHiredCandidateDTO(candidate, offer);
+    }
+
+    private HiredCandidateDTO buildHiredCandidateDTO(Recruiter candidate, Offer offer) {
+        return HiredCandidateDTO.builder()
+                .candidateId(candidate.getCandidateId())
+                .fullName(candidate.getFullName())
+                .appliedRole(candidate.getAppliedRole())
+                .experienceYears(candidate.getExperienceYears())
+                .offerId(offer.getOfferId())
+                .positionOffered(offer.getPositionOffered())
+                .department(offer.getDepartment())
+                .salaryOffered(offer.getSalaryOffered())
+                .offerDate(offer.getOfferDate())
+                .joiningDate(offer.getJoiningDate())
+                .additionalBenefits(offer.getAdditionalBenefits())
+                .remarks(offer.getRemarks())
+                .build();
     }
 }

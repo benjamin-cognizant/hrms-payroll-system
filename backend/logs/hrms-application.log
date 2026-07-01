@@ -1,0 +1,912 @@
+2026-07-01 09:37:00 [main] INFO  com.hrms.recruiter.Application - Starting Application using Java 21 with PID 12980 (C:\Users\2505474\Desktop\Project-hrms\hrms-payroll-system\backend\target\classes started by 2505474 in C:\Users\2505474\Desktop\Project-hrms\hrms-payroll-system\backend)
+2026-07-01 09:37:00 [main] DEBUG com.hrms.recruiter.Application - Running with Spring Boot v3.3.0, Spring v6.1.8
+2026-07-01 09:37:00 [main] INFO  com.hrms.recruiter.Application - No active profile set, falling back to 1 default profile: "default"
+2026-07-01 09:37:01 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-01 09:37:01 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 123 ms. Found 4 JPA repository interfaces.
+2026-07-01 09:37:02 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-07-01 09:37:02 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-07-01 09:37:02 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.24]
+2026-07-01 09:37:02 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-07-01 09:37:02 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2322 ms
+2026-07-01 09:37:03 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-01 09:37:03 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2026-07-01 09:37:03 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-01 09:37:04 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-01 09:37:04 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-01 09:37:04 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@46c662f2
+2026-07-01 09:37:04 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-01 09:37:04 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-01 09:37:06 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-01 09:37:07 [main] DEBUG org.hibernate.SQL - alter table job_requisition modify column description TEXT
+2026-07-01 09:37:07 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-01 09:37:07 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-01 09:37:07 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2026-07-01 09:37:08 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2026-07-01 09:37:08 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-07-01 09:37:08 [main] INFO  com.hrms.recruiter.Application - Started Application in 8.604 seconds (process running for 9.208)
+2026-07-01 09:37:33 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-01 09:37:33 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-07-01 09:37:33 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2026-07-01 09:37:33 [http-nio-8080-exec-1] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 09:37:33 [http-nio-8080-exec-1] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 09:37:34 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 09:37:34 [http-nio-8080-exec-1] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 09:37:34 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 09:37:34 [http-nio-8080-exec-1] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 09:37:34 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 09:37:34 [http-nio-8080-exec-1] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 09:37:34 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 09:37:34 [http-nio-8080-exec-1] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=0, interviewCount=3, candidateCount=9}
+2026-07-01 09:37:43 [http-nio-8080-exec-6] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 09:37:43 [http-nio-8080-exec-4] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 09:37:43 [http-nio-8080-exec-4] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 09:37:43 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 09:37:43 [http-nio-8080-exec-4] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 09:37:43 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 09:37:43 [http-nio-8080-exec-4] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 09:37:44 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 09:37:44 [http-nio-8080-exec-4] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 09:37:44 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 09:37:44 [http-nio-8080-exec-4] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=0, interviewCount=3, candidateCount=9}
+2026-07-01 09:37:47 [http-nio-8080-exec-5] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:37:47 [http-nio-8080-exec-5] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:37:47 [http-nio-8080-exec-8] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 09:37:47 [http-nio-8080-exec-8] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 09:37:47 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:37:47 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 09:37:47 [http-nio-8080-exec-5] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:37:48 [http-nio-8080-exec-9] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 09:37:48 [http-nio-8080-exec-9] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 09:37:48 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 09:37:48 [http-nio-8080-exec-10] INFO  c.h.r.c.RecruitmentRestController - Fetching all interviews
+2026-07-01 09:37:48 [http-nio-8080-exec-1] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:37:48 [http-nio-8080-exec-1] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:37:48 [http-nio-8080-exec-10] DEBUG c.h.r.service.InterviewService - Retrieving all interviews
+2026-07-01 09:37:48 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select i1_0.interview_id,i1_0.candidate_id,i1_0.interview_date_time,i1_0.interview_mode,i1_0.interview_round,i1_0.interview_status,i1_0.interviewer_name,i1_0.location,i1_0.meeting_link,i1_0.remarks from interview i1_0
+2026-07-01 09:37:48 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:37:48 [http-nio-8080-exec-1] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:37:48 [http-nio-8080-exec-2] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:37:48 [http-nio-8080-exec-2] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:37:48 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:37:48 [http-nio-8080-exec-2] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:37:49 [http-nio-8080-exec-3] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:37:49 [http-nio-8080-exec-7] INFO  c.h.r.c.RecruitmentRestController - Fetching all offers
+2026-07-01 09:37:49 [http-nio-8080-exec-3] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:37:49 [http-nio-8080-exec-7] DEBUG c.h.recruiter.service.OfferService - Retrieving all offers
+2026-07-01 09:37:49 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:37:49 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select o1_0.offer_id,o1_0.additional_benefits,o1_0.candidate_id,o1_0.department,o1_0.joining_date,o1_0.offer_date,o1_0.offer_status,o1_0.position_offered,o1_0.remarks,o1_0.salary_offered from offer_letter o1_0
+2026-07-01 09:37:49 [http-nio-8080-exec-3] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:37:49 [http-nio-8080-exec-6] INFO  c.h.r.c.RecruitmentRestController - Fetching all interviews
+2026-07-01 09:37:49 [http-nio-8080-exec-4] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:37:49 [http-nio-8080-exec-6] DEBUG c.h.r.service.InterviewService - Retrieving all interviews
+2026-07-01 09:37:49 [http-nio-8080-exec-4] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:37:49 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:37:49 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select i1_0.interview_id,i1_0.candidate_id,i1_0.interview_date_time,i1_0.interview_mode,i1_0.interview_round,i1_0.interview_status,i1_0.interviewer_name,i1_0.location,i1_0.meeting_link,i1_0.remarks from interview i1_0
+2026-07-01 09:37:49 [http-nio-8080-exec-4] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:38:37 [http-nio-8080-exec-5] INFO  c.h.r.c.RecruitmentRestController - Rolling out offer for candidate ID: 15
+2026-07-01 09:38:37 [http-nio-8080-exec-5] INFO  c.h.recruiter.service.OfferService - Rolling out offer for candidate ID: 15
+2026-07-01 09:38:37 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0 where r1_0.candidate_id=?
+2026-07-01 09:38:37 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select i1_0.interview_id,i1_0.candidate_id,i1_0.interview_date_time,i1_0.interview_mode,i1_0.interview_round,i1_0.interview_status,i1_0.interviewer_name,i1_0.location,i1_0.meeting_link,i1_0.remarks from interview i1_0 where i1_0.candidate_id=?
+2026-07-01 09:38:37 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - insert into offer_letter (additional_benefits,candidate_id,department,joining_date,offer_date,offer_status,position_offered,remarks,salary_offered) values (?,?,?,?,?,?,?,?,?)
+2026-07-01 09:38:37 [http-nio-8080-exec-5] INFO  c.h.recruiter.service.OfferService - Offer rolled out successfully with ID: 3
+2026-07-01 09:38:37 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - update candidate set applied_role=?,candidate_status=?,experience_years=?,full_name=?,interview_stage=? where candidate_id=?
+2026-07-01 09:38:37 [http-nio-8080-exec-5] INFO  c.h.r.c.RecruitmentRestController - Offer rolled out successfully with ID: 3
+2026-07-01 09:38:37 [http-nio-8080-exec-8] INFO  c.h.r.c.RecruitmentRestController - Fetching all offers
+2026-07-01 09:38:37 [http-nio-8080-exec-8] DEBUG c.h.recruiter.service.OfferService - Retrieving all offers
+2026-07-01 09:38:37 [http-nio-8080-exec-9] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:38:37 [http-nio-8080-exec-9] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:38:37 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select o1_0.offer_id,o1_0.additional_benefits,o1_0.candidate_id,o1_0.department,o1_0.joining_date,o1_0.offer_date,o1_0.offer_status,o1_0.position_offered,o1_0.remarks,o1_0.salary_offered from offer_letter o1_0
+2026-07-01 09:38:37 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:38:37 [http-nio-8080-exec-9] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:38:37 [http-nio-8080-exec-1] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:38:37 [http-nio-8080-exec-1] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:38:37 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:38:37 [http-nio-8080-exec-1] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:38:37 [http-nio-8080-exec-10] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:38:37 [http-nio-8080-exec-10] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:38:37 [http-nio-8080-exec-2] INFO  c.h.r.c.RecruitmentRestController - Fetching all interviews
+2026-07-01 09:38:37 [http-nio-8080-exec-2] DEBUG c.h.r.service.InterviewService - Retrieving all interviews
+2026-07-01 09:38:37 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:38:37 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select i1_0.interview_id,i1_0.candidate_id,i1_0.interview_date_time,i1_0.interview_mode,i1_0.interview_round,i1_0.interview_status,i1_0.interviewer_name,i1_0.location,i1_0.meeting_link,i1_0.remarks from interview i1_0
+2026-07-01 09:38:37 [http-nio-8080-exec-10] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:38:44 [http-nio-8080-exec-3] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 09:38:44 [http-nio-8080-exec-3] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 09:38:44 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 09:38:44 [http-nio-8080-exec-3] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 09:38:44 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 09:38:44 [http-nio-8080-exec-3] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 09:38:44 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 09:38:44 [http-nio-8080-exec-3] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 09:38:44 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 09:38:44 [http-nio-8080-exec-3] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 09:38:45 [http-nio-8080-exec-7] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:38:45 [http-nio-8080-exec-7] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:38:45 [http-nio-8080-exec-6] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 09:38:45 [http-nio-8080-exec-6] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 09:38:45 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 09:38:45 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:38:45 [http-nio-8080-exec-7] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:38:45 [http-nio-8080-exec-4] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 09:38:45 [http-nio-8080-exec-4] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 09:38:45 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 09:38:46 [http-nio-8080-exec-8] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:38:46 [http-nio-8080-exec-5] INFO  c.h.r.c.RecruitmentRestController - Fetching all interviews
+2026-07-01 09:38:46 [http-nio-8080-exec-8] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:38:46 [http-nio-8080-exec-5] DEBUG c.h.r.service.InterviewService - Retrieving all interviews
+2026-07-01 09:38:46 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:38:46 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select i1_0.interview_id,i1_0.candidate_id,i1_0.interview_date_time,i1_0.interview_mode,i1_0.interview_round,i1_0.interview_status,i1_0.interviewer_name,i1_0.location,i1_0.meeting_link,i1_0.remarks from interview i1_0
+2026-07-01 09:38:46 [http-nio-8080-exec-8] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:38:46 [http-nio-8080-exec-9] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:38:46 [http-nio-8080-exec-9] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:38:46 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:38:46 [http-nio-8080-exec-9] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:38:47 [http-nio-8080-exec-1] INFO  c.h.r.c.RecruitmentRestController - Fetching all offers
+2026-07-01 09:38:47 [http-nio-8080-exec-1] DEBUG c.h.recruiter.service.OfferService - Retrieving all offers
+2026-07-01 09:38:47 [http-nio-8080-exec-10] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:38:47 [http-nio-8080-exec-10] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:38:47 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:38:47 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select o1_0.offer_id,o1_0.additional_benefits,o1_0.candidate_id,o1_0.department,o1_0.joining_date,o1_0.offer_date,o1_0.offer_status,o1_0.position_offered,o1_0.remarks,o1_0.salary_offered from offer_letter o1_0
+2026-07-01 09:38:47 [http-nio-8080-exec-10] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:38:47 [http-nio-8080-exec-2] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:38:47 [http-nio-8080-exec-2] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:38:47 [http-nio-8080-exec-3] INFO  c.h.r.c.RecruitmentRestController - Fetching all interviews
+2026-07-01 09:38:47 [http-nio-8080-exec-3] DEBUG c.h.r.service.InterviewService - Retrieving all interviews
+2026-07-01 09:38:47 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:38:47 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select i1_0.interview_id,i1_0.candidate_id,i1_0.interview_date_time,i1_0.interview_mode,i1_0.interview_round,i1_0.interview_status,i1_0.interviewer_name,i1_0.location,i1_0.meeting_link,i1_0.remarks from interview i1_0
+2026-07-01 09:38:47 [http-nio-8080-exec-2] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:44:37 [http-nio-8080-exec-4] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 09:44:37 [http-nio-8080-exec-4] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 09:44:37 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 09:44:37 [http-nio-8080-exec-4] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 09:44:37 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 09:44:37 [http-nio-8080-exec-4] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 09:44:37 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 09:44:37 [http-nio-8080-exec-4] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 09:44:37 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 09:44:37 [http-nio-8080-exec-4] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 09:44:38 [http-nio-8080-exec-8] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:44:38 [http-nio-8080-exec-8] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:44:38 [http-nio-8080-exec-5] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 09:44:38 [http-nio-8080-exec-5] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 09:44:38 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:44:38 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 09:44:38 [http-nio-8080-exec-8] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:44:39 [http-nio-8080-exec-9] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 09:44:39 [http-nio-8080-exec-9] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 09:44:39 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 09:44:39 [http-nio-8080-exec-1] INFO  c.h.r.c.RecruitmentRestController - Fetching all interviews
+2026-07-01 09:44:39 [http-nio-8080-exec-10] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:44:39 [http-nio-8080-exec-1] DEBUG c.h.r.service.InterviewService - Retrieving all interviews
+2026-07-01 09:44:39 [http-nio-8080-exec-10] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:44:39 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:44:39 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select i1_0.interview_id,i1_0.candidate_id,i1_0.interview_date_time,i1_0.interview_mode,i1_0.interview_round,i1_0.interview_status,i1_0.interviewer_name,i1_0.location,i1_0.meeting_link,i1_0.remarks from interview i1_0
+2026-07-01 09:44:39 [http-nio-8080-exec-10] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:44:39 [http-nio-8080-exec-3] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:44:39 [http-nio-8080-exec-3] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:44:39 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:44:39 [http-nio-8080-exec-3] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:44:40 [http-nio-8080-exec-2] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:44:40 [http-nio-8080-exec-2] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:44:40 [http-nio-8080-exec-7] INFO  c.h.r.c.RecruitmentRestController - Fetching all offers
+2026-07-01 09:44:40 [http-nio-8080-exec-7] DEBUG c.h.recruiter.service.OfferService - Retrieving all offers
+2026-07-01 09:44:40 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:44:40 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select o1_0.offer_id,o1_0.additional_benefits,o1_0.candidate_id,o1_0.department,o1_0.joining_date,o1_0.offer_date,o1_0.offer_status,o1_0.position_offered,o1_0.remarks,o1_0.salary_offered from offer_letter o1_0
+2026-07-01 09:44:40 [http-nio-8080-exec-2] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:44:40 [http-nio-8080-exec-6] INFO  c.h.r.c.RecruitmentRestController - Fetching all interviews
+2026-07-01 09:44:40 [http-nio-8080-exec-6] DEBUG c.h.r.service.InterviewService - Retrieving all interviews
+2026-07-01 09:44:40 [http-nio-8080-exec-4] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:44:40 [http-nio-8080-exec-4] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:44:40 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:44:40 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select i1_0.interview_id,i1_0.candidate_id,i1_0.interview_date_time,i1_0.interview_mode,i1_0.interview_round,i1_0.interview_status,i1_0.interviewer_name,i1_0.location,i1_0.meeting_link,i1_0.remarks from interview i1_0
+2026-07-01 09:44:40 [http-nio-8080-exec-4] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:44:43 [http-nio-8080-exec-8] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 09:44:43 [http-nio-8080-exec-8] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 09:44:43 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 09:44:43 [http-nio-8080-exec-8] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 09:44:43 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 09:44:43 [http-nio-8080-exec-8] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 09:44:43 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 09:44:43 [http-nio-8080-exec-8] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 09:44:43 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 09:44:43 [http-nio-8080-exec-8] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 09:44:43 [http-nio-8080-exec-9] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 09:44:43 [http-nio-8080-exec-5] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:44:43 [http-nio-8080-exec-5] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:44:43 [http-nio-8080-exec-9] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 09:44:43 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:44:43 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 09:44:43 [http-nio-8080-exec-5] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:44:44 [http-nio-8080-exec-1] INFO  c.h.r.c.RecruitmentRestController - Fetching all interviews
+2026-07-01 09:44:44 [http-nio-8080-exec-10] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:44:44 [http-nio-8080-exec-1] DEBUG c.h.r.service.InterviewService - Retrieving all interviews
+2026-07-01 09:44:44 [http-nio-8080-exec-10] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:44:44 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:44:44 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select i1_0.interview_id,i1_0.candidate_id,i1_0.interview_date_time,i1_0.interview_mode,i1_0.interview_round,i1_0.interview_status,i1_0.interviewer_name,i1_0.location,i1_0.meeting_link,i1_0.remarks from interview i1_0
+2026-07-01 09:44:44 [http-nio-8080-exec-10] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:44:44 [http-nio-8080-exec-3] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:44:44 [http-nio-8080-exec-3] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:44:44 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:44:44 [http-nio-8080-exec-3] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:44:45 [http-nio-8080-exec-2] INFO  c.h.r.c.RecruitmentRestController - Fetching all offers
+2026-07-01 09:44:45 [http-nio-8080-exec-7] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:44:45 [http-nio-8080-exec-2] DEBUG c.h.recruiter.service.OfferService - Retrieving all offers
+2026-07-01 09:44:45 [http-nio-8080-exec-7] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:44:45 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:44:45 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select o1_0.offer_id,o1_0.additional_benefits,o1_0.candidate_id,o1_0.department,o1_0.joining_date,o1_0.offer_date,o1_0.offer_status,o1_0.position_offered,o1_0.remarks,o1_0.salary_offered from offer_letter o1_0
+2026-07-01 09:44:45 [http-nio-8080-exec-7] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:44:45 [http-nio-8080-exec-6] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:44:45 [http-nio-8080-exec-6] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:44:45 [http-nio-8080-exec-4] INFO  c.h.r.c.RecruitmentRestController - Fetching all interviews
+2026-07-01 09:44:45 [http-nio-8080-exec-4] DEBUG c.h.r.service.InterviewService - Retrieving all interviews
+2026-07-01 09:44:45 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:44:45 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select i1_0.interview_id,i1_0.candidate_id,i1_0.interview_date_time,i1_0.interview_mode,i1_0.interview_round,i1_0.interview_status,i1_0.interviewer_name,i1_0.location,i1_0.meeting_link,i1_0.remarks from interview i1_0
+2026-07-01 09:44:45 [http-nio-8080-exec-6] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:44:46 [http-nio-8080-exec-8] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 09:44:46 [http-nio-8080-exec-8] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 09:44:46 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 09:44:47 [http-nio-8080-exec-9] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 09:44:47 [http-nio-8080-exec-5] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:44:47 [http-nio-8080-exec-9] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 09:44:47 [http-nio-8080-exec-5] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:44:47 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:44:47 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 09:44:47 [http-nio-8080-exec-5] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:44:52 [http-nio-8080-exec-1] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 09:44:52 [http-nio-8080-exec-1] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 09:44:52 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 09:44:52 [http-nio-8080-exec-1] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 09:44:52 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 09:44:52 [http-nio-8080-exec-1] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 09:44:52 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 09:44:52 [http-nio-8080-exec-1] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 09:44:52 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 09:44:52 [http-nio-8080-exec-1] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 09:44:56 [http-nio-8080-exec-3] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 09:44:56 [http-nio-8080-exec-10] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:44:56 [http-nio-8080-exec-3] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 09:44:56 [http-nio-8080-exec-10] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:44:56 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:44:56 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 09:44:56 [http-nio-8080-exec-10] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:45:07 [http-nio-8080-exec-2] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 09:45:07 [http-nio-8080-exec-2] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 09:45:07 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 09:45:08 [http-nio-8080-exec-7] INFO  c.h.r.c.RecruitmentRestController - Fetching all interviews
+2026-07-01 09:45:08 [http-nio-8080-exec-6] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:45:08 [http-nio-8080-exec-7] DEBUG c.h.r.service.InterviewService - Retrieving all interviews
+2026-07-01 09:45:08 [http-nio-8080-exec-6] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:45:08 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select i1_0.interview_id,i1_0.candidate_id,i1_0.interview_date_time,i1_0.interview_mode,i1_0.interview_round,i1_0.interview_status,i1_0.interviewer_name,i1_0.location,i1_0.meeting_link,i1_0.remarks from interview i1_0
+2026-07-01 09:45:08 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:45:08 [http-nio-8080-exec-6] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:45:08 [http-nio-8080-exec-4] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:45:08 [http-nio-8080-exec-4] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:45:08 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:45:08 [http-nio-8080-exec-4] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:45:09 [http-nio-8080-exec-8] INFO  c.h.r.c.RecruitmentRestController - Fetching all offers
+2026-07-01 09:45:09 [http-nio-8080-exec-9] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:45:09 [http-nio-8080-exec-8] DEBUG c.h.recruiter.service.OfferService - Retrieving all offers
+2026-07-01 09:45:09 [http-nio-8080-exec-9] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:45:09 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:45:09 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select o1_0.offer_id,o1_0.additional_benefits,o1_0.candidate_id,o1_0.department,o1_0.joining_date,o1_0.offer_date,o1_0.offer_status,o1_0.position_offered,o1_0.remarks,o1_0.salary_offered from offer_letter o1_0
+2026-07-01 09:45:09 [http-nio-8080-exec-9] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:45:09 [http-nio-8080-exec-1] INFO  c.h.r.c.RecruitmentRestController - Fetching all interviews
+2026-07-01 09:45:09 [http-nio-8080-exec-5] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 09:45:09 [http-nio-8080-exec-1] DEBUG c.h.r.service.InterviewService - Retrieving all interviews
+2026-07-01 09:45:09 [http-nio-8080-exec-5] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 09:45:09 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 09:45:09 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select i1_0.interview_id,i1_0.candidate_id,i1_0.interview_date_time,i1_0.interview_mode,i1_0.interview_round,i1_0.interview_status,i1_0.interviewer_name,i1_0.location,i1_0.meeting_link,i1_0.remarks from interview i1_0
+2026-07-01 09:45:09 [http-nio-8080-exec-5] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 09:56:43 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-07-01 09:56:43 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-07-01 09:56:43 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-07-01 10:01:52 [main] INFO  com.hrms.recruiter.Application - Starting Application using Java 21 with PID 19280 (C:\Users\2505474\Desktop\Project-hrms\hrms-payroll-system\backend\target\classes started by 2505474 in C:\Users\2505474\Desktop\Project-hrms\hrms-payroll-system\backend)
+2026-07-01 10:01:52 [main] DEBUG com.hrms.recruiter.Application - Running with Spring Boot v3.3.0, Spring v6.1.8
+2026-07-01 10:01:52 [main] INFO  com.hrms.recruiter.Application - No active profile set, falling back to 1 default profile: "default"
+2026-07-01 10:01:53 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-07-01 10:01:53 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 82 ms. Found 4 JPA repository interfaces.
+2026-07-01 10:01:53 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-07-01 10:01:53 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-07-01 10:01:53 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.24]
+2026-07-01 10:01:53 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-07-01 10:01:53 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1578 ms
+2026-07-01 10:01:54 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-07-01 10:01:54 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2026-07-01 10:01:54 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2026-07-01 10:01:54 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-07-01 10:01:54 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-01 10:01:55 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@46c662f2
+2026-07-01 10:01:55 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-01 10:01:55 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-07-01 10:01:56 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-07-01 10:01:56 [main] DEBUG org.hibernate.SQL - alter table job_requisition modify column description TEXT
+2026-07-01 10:01:56 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-07-01 10:01:56 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-07-01 10:01:56 [main] INFO  o.s.b.a.w.s.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2026-07-01 10:01:57 [main] WARN  o.s.b.a.t.ThymeleafAutoConfiguration$DefaultTemplateResolverConfiguration - Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+2026-07-01 10:01:57 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-07-01 10:01:57 [main] INFO  com.hrms.recruiter.Application - Started Application in 5.842 seconds (process running for 6.286)
+2026-07-01 10:04:04 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-01 10:04:04 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-07-01 10:04:04 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-07-01 10:04:04 [http-nio-8080-exec-1] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:04:04 [http-nio-8080-exec-2] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 10:04:04 [http-nio-8080-exec-2] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 10:04:05 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 10:04:05 [http-nio-8080-exec-2] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 10:04:05 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 10:04:05 [http-nio-8080-exec-2] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 10:04:05 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 10:04:05 [http-nio-8080-exec-2] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 10:04:05 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 10:04:05 [http-nio-8080-exec-2] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 10:04:07 [http-nio-8080-exec-3] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:04:07 [http-nio-8080-exec-5] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:04:07 [http-nio-8080-exec-5] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:04:07 [http-nio-8080-exec-4] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:04:07 [http-nio-8080-exec-4] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:04:07 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:04:07 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:04:07 [http-nio-8080-exec-5] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:04:09 [http-nio-8080-exec-6] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:04:09 [http-nio-8080-exec-7] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:04:09 [http-nio-8080-exec-7] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:04:09 [http-nio-8080-exec-8] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:04:09 [http-nio-8080-exec-8] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:04:09 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:04:09 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:04:09 [http-nio-8080-exec-7] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:04:11 [http-nio-8080-exec-10] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:04:11 [http-nio-8080-exec-9] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 10:04:11 [http-nio-8080-exec-9] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 10:04:11 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 10:04:11 [http-nio-8080-exec-9] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 10:04:11 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 10:04:11 [http-nio-8080-exec-9] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 10:04:11 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 10:04:11 [http-nio-8080-exec-9] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 10:04:11 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 10:04:11 [http-nio-8080-exec-9] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 10:04:12 [http-nio-8080-exec-1] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:04:12 [http-nio-8080-exec-2] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:04:12 [http-nio-8080-exec-2] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:04:12 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:04:13 [http-nio-8080-exec-3] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:04:13 [http-nio-8080-exec-5] INFO  c.h.r.c.RecruitmentRestController - Fetching all interviews
+2026-07-01 10:04:13 [http-nio-8080-exec-4] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:04:13 [http-nio-8080-exec-5] DEBUG c.h.r.service.InterviewService - Retrieving all interviews
+2026-07-01 10:04:13 [http-nio-8080-exec-4] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:04:13 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:04:13 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select i1_0.interview_id,i1_0.candidate_id,i1_0.interview_date_time,i1_0.interview_mode,i1_0.interview_round,i1_0.interview_status,i1_0.interviewer_name,i1_0.location,i1_0.meeting_link,i1_0.remarks from interview i1_0
+2026-07-01 10:04:13 [http-nio-8080-exec-4] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:04:13 [http-nio-8080-exec-6] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:04:13 [http-nio-8080-exec-6] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:04:13 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:04:13 [http-nio-8080-exec-6] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:04:13 [http-nio-8080-exec-8] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:04:13 [http-nio-8080-exec-7] INFO  c.h.r.c.RecruitmentRestController - Fetching all offers
+2026-07-01 10:04:13 [http-nio-8080-exec-7] DEBUG c.h.recruiter.service.OfferService - Retrieving all offers
+2026-07-01 10:04:13 [http-nio-8080-exec-10] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:04:13 [http-nio-8080-exec-10] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:04:13 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select o1_0.offer_id,o1_0.additional_benefits,o1_0.candidate_id,o1_0.department,o1_0.joining_date,o1_0.offer_date,o1_0.offer_status,o1_0.position_offered,o1_0.remarks,o1_0.salary_offered from offer_letter o1_0
+2026-07-01 10:04:13 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:04:13 [http-nio-8080-exec-10] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:04:13 [http-nio-8080-exec-9] INFO  c.h.r.c.RecruitmentRestController - Fetching all interviews
+2026-07-01 10:04:13 [http-nio-8080-exec-9] DEBUG c.h.r.service.InterviewService - Retrieving all interviews
+2026-07-01 10:04:13 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select i1_0.interview_id,i1_0.candidate_id,i1_0.interview_date_time,i1_0.interview_mode,i1_0.interview_round,i1_0.interview_status,i1_0.interviewer_name,i1_0.location,i1_0.meeting_link,i1_0.remarks from interview i1_0
+2026-07-01 10:04:13 [http-nio-8080-exec-1] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:04:13 [http-nio-8080-exec-1] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:04:13 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:04:13 [http-nio-8080-exec-1] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:04:15 [http-nio-8080-exec-2] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:04:15 [http-nio-8080-exec-3] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:04:15 [http-nio-8080-exec-3] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:04:15 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:04:16 [http-nio-8080-exec-4] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:04:16 [http-nio-8080-exec-5] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:04:16 [http-nio-8080-exec-6] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:04:16 [http-nio-8080-exec-5] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:04:16 [http-nio-8080-exec-6] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:04:16 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:04:16 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:04:16 [http-nio-8080-exec-5] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:04:17 [http-nio-8080-exec-8] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:04:17 [http-nio-8080-exec-10] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 10:04:17 [http-nio-8080-exec-10] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 10:04:17 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 10:04:17 [http-nio-8080-exec-10] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 10:04:17 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 10:04:17 [http-nio-8080-exec-10] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 10:04:17 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 10:04:17 [http-nio-8080-exec-10] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 10:04:17 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 10:04:17 [http-nio-8080-exec-10] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 10:04:24 [http-nio-8080-exec-7] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:04:24 [http-nio-8080-exec-9] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 10:04:24 [http-nio-8080-exec-9] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 10:04:24 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 10:04:24 [http-nio-8080-exec-9] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 10:04:24 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 10:04:24 [http-nio-8080-exec-9] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 10:04:24 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 10:04:24 [http-nio-8080-exec-9] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 10:04:24 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 10:04:24 [http-nio-8080-exec-9] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 10:04:39 [http-nio-8080-exec-1] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:04:39 [http-nio-8080-exec-2] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 10:04:39 [http-nio-8080-exec-2] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 10:04:39 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 10:04:39 [http-nio-8080-exec-2] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 10:04:39 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 10:04:39 [http-nio-8080-exec-2] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 10:04:39 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 10:04:39 [http-nio-8080-exec-2] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 10:04:39 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 10:04:39 [http-nio-8080-exec-2] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 10:04:52 [http-nio-8080-exec-3] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:04:52 [http-nio-8080-exec-4] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 10:04:52 [http-nio-8080-exec-4] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 10:04:52 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 10:04:52 [http-nio-8080-exec-4] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 10:04:52 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 10:04:52 [http-nio-8080-exec-4] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 10:04:52 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 10:04:52 [http-nio-8080-exec-4] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 10:04:52 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 10:04:52 [http-nio-8080-exec-4] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 10:07:53 [http-nio-8080-exec-8] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:07:53 [http-nio-8080-exec-10] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 10:07:53 [http-nio-8080-exec-10] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 10:07:53 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 10:07:53 [http-nio-8080-exec-10] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 10:07:53 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 10:07:53 [http-nio-8080-exec-10] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 10:07:53 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 10:07:53 [http-nio-8080-exec-10] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 10:07:53 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 10:07:53 [http-nio-8080-exec-10] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 10:10:14 [http-nio-8080-exec-9] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:10:14 [http-nio-8080-exec-1] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 10:10:14 [http-nio-8080-exec-1] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 10:10:14 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 10:10:14 [http-nio-8080-exec-1] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 10:10:14 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 10:10:14 [http-nio-8080-exec-1] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 10:10:14 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 10:10:14 [http-nio-8080-exec-1] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 10:10:14 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 10:10:14 [http-nio-8080-exec-1] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 10:10:16 [http-nio-8080-exec-2] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:10:16 [http-nio-8080-exec-3] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 10:10:16 [http-nio-8080-exec-3] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 10:10:16 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 10:10:16 [http-nio-8080-exec-3] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 10:10:16 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 10:10:16 [http-nio-8080-exec-3] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 10:10:16 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 10:10:16 [http-nio-8080-exec-3] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 10:10:16 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 10:10:16 [http-nio-8080-exec-3] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 10:10:26 [http-nio-8080-exec-4] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:10:26 [http-nio-8080-exec-6] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 10:10:26 [http-nio-8080-exec-6] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 10:10:26 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 10:10:26 [http-nio-8080-exec-6] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 10:10:26 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 10:10:26 [http-nio-8080-exec-6] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 10:10:26 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 10:10:26 [http-nio-8080-exec-6] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 10:10:26 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 10:10:26 [http-nio-8080-exec-6] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 10:10:34 [http-nio-8080-exec-5] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:10:38 [http-nio-8080-exec-8] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 10:10:38 [http-nio-8080-exec-8] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 10:10:38 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 10:10:38 [http-nio-8080-exec-8] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 10:10:38 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 10:10:38 [http-nio-8080-exec-8] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 10:10:38 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 10:10:38 [http-nio-8080-exec-8] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 10:10:38 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 10:10:38 [http-nio-8080-exec-8] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 10:10:49 [http-nio-8080-exec-10] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:10:49 [http-nio-8080-exec-7] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 10:10:49 [http-nio-8080-exec-7] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 10:10:49 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 10:10:49 [http-nio-8080-exec-7] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 10:10:49 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 10:10:49 [http-nio-8080-exec-7] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 10:10:49 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 10:10:49 [http-nio-8080-exec-7] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 10:10:49 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 10:10:49 [http-nio-8080-exec-7] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 10:11:05 [http-nio-8080-exec-9] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:11:06 [http-nio-8080-exec-1] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 10:11:06 [http-nio-8080-exec-1] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 10:11:06 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 10:11:06 [http-nio-8080-exec-1] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 10:11:06 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 10:11:06 [http-nio-8080-exec-1] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 10:11:06 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 10:11:06 [http-nio-8080-exec-1] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 10:11:06 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 10:11:06 [http-nio-8080-exec-1] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 10:11:12 [http-nio-8080-exec-2] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:11:12 [http-nio-8080-exec-3] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 10:11:12 [http-nio-8080-exec-3] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 10:11:12 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 10:11:12 [http-nio-8080-exec-3] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 10:11:12 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 10:11:12 [http-nio-8080-exec-3] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 10:11:12 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 10:11:12 [http-nio-8080-exec-3] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 10:11:12 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 10:11:12 [http-nio-8080-exec-3] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 10:11:25 [http-nio-8080-exec-4] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:11:25 [http-nio-8080-exec-6] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:11:26 [http-nio-8080-exec-5] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 10:11:26 [http-nio-8080-exec-5] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 10:11:26 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 10:11:26 [http-nio-8080-exec-5] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 10:11:26 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 10:11:26 [http-nio-8080-exec-5] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 10:11:26 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 10:11:26 [http-nio-8080-exec-5] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 10:11:26 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 10:11:26 [http-nio-8080-exec-5] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 10:11:38 [http-nio-8080-exec-8] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:11:38 [http-nio-8080-exec-10] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 10:11:38 [http-nio-8080-exec-10] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 10:11:38 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 10:11:38 [http-nio-8080-exec-10] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 10:11:38 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 10:11:38 [http-nio-8080-exec-10] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 10:11:38 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 10:11:38 [http-nio-8080-exec-10] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 10:11:38 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 10:11:38 [http-nio-8080-exec-10] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 10:15:29 [http-nio-8080-exec-9] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:15:29 [http-nio-8080-exec-1] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 10:15:29 [http-nio-8080-exec-1] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 10:15:29 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 10:15:29 [http-nio-8080-exec-1] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 10:15:29 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 10:15:29 [http-nio-8080-exec-1] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 10:15:29 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 10:15:29 [http-nio-8080-exec-1] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 10:15:29 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 10:15:29 [http-nio-8080-exec-1] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 10:15:37 [http-nio-8080-exec-2] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:15:38 [http-nio-8080-exec-3] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 10:15:38 [http-nio-8080-exec-3] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 10:15:38 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 10:15:38 [http-nio-8080-exec-3] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 10:15:38 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 10:15:38 [http-nio-8080-exec-3] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 10:15:38 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 10:15:38 [http-nio-8080-exec-3] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 10:15:38 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 10:15:38 [http-nio-8080-exec-3] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 10:17:23 [http-nio-8080-exec-6] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:17:23 [http-nio-8080-exec-5] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 10:17:23 [http-nio-8080-exec-5] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 10:17:23 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 10:17:23 [http-nio-8080-exec-5] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 10:17:23 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 10:17:23 [http-nio-8080-exec-5] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 10:17:23 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 10:17:23 [http-nio-8080-exec-5] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 10:17:23 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 10:17:23 [http-nio-8080-exec-5] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 10:17:23 [http-nio-8080-exec-8] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:17:23 [http-nio-8080-exec-10] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 10:17:23 [http-nio-8080-exec-10] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 10:17:23 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 10:17:23 [http-nio-8080-exec-10] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 10:17:23 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 10:17:23 [http-nio-8080-exec-10] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 10:17:23 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 10:17:23 [http-nio-8080-exec-10] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 10:17:23 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 10:17:23 [http-nio-8080-exec-10] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 10:22:28 [http-nio-8080-exec-9] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:22:29 [http-nio-8080-exec-1] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 10:22:29 [http-nio-8080-exec-1] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 10:22:29 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 10:22:29 [http-nio-8080-exec-1] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 10:22:29 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 10:22:29 [http-nio-8080-exec-1] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 10:22:29 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 10:22:29 [http-nio-8080-exec-2] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:22:29 [http-nio-8080-exec-1] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 10:22:29 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 10:22:29 [http-nio-8080-exec-3] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 10:22:29 [http-nio-8080-exec-3] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 10:22:29 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 10:22:29 [http-nio-8080-exec-1] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 10:22:29 [http-nio-8080-exec-3] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 10:22:29 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 10:22:29 [http-nio-8080-exec-3] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 10:22:29 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 10:22:29 [http-nio-8080-exec-3] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 10:22:29 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 10:22:29 [http-nio-8080-exec-3] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 10:22:33 [http-nio-8080-exec-4] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:22:33 [http-nio-8080-exec-6] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 10:22:33 [http-nio-8080-exec-6] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 10:22:33 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 10:22:33 [http-nio-8080-exec-6] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 10:22:33 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 10:22:33 [http-nio-8080-exec-6] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 10:22:33 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 10:22:33 [http-nio-8080-exec-6] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 10:22:33 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 10:22:33 [http-nio-8080-exec-6] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 10:22:36 [http-nio-8080-exec-5] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:22:36 [http-nio-8080-exec-8] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 10:22:36 [http-nio-8080-exec-8] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 10:22:36 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 10:22:36 [http-nio-8080-exec-8] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 10:22:36 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 10:22:36 [http-nio-8080-exec-8] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 10:22:36 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 10:22:36 [http-nio-8080-exec-8] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 10:22:36 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 10:22:36 [http-nio-8080-exec-8] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 10:23:07 [http-nio-8080-exec-7] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:23:07 [http-nio-8080-exec-9] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 10:23:07 [http-nio-8080-exec-9] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 10:23:07 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 10:23:07 [http-nio-8080-exec-9] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 10:23:07 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 10:23:07 [http-nio-8080-exec-9] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 10:23:07 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 10:23:07 [http-nio-8080-exec-9] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 10:23:07 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 10:23:07 [http-nio-8080-exec-9] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 10:23:10 [http-nio-8080-exec-2] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:23:10 [http-nio-8080-exec-1] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:23:10 [http-nio-8080-exec-1] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:23:10 [http-nio-8080-exec-3] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:23:10 [http-nio-8080-exec-3] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:23:10 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:23:10 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:23:10 [http-nio-8080-exec-1] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:23:11 [http-nio-8080-exec-4] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:23:11 [http-nio-8080-exec-6] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:23:11 [http-nio-8080-exec-6] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:23:11 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:23:12 [http-nio-8080-exec-5] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:23:12 [http-nio-8080-exec-8] INFO  c.h.r.c.RecruitmentRestController - Fetching dashboard data
+2026-07-01 10:23:12 [http-nio-8080-exec-8] DEBUG c.h.r.service.RecruiterService - Getting candidate count
+2026-07-01 10:23:12 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select count(*) from candidate r1_0
+2026-07-01 10:23:12 [http-nio-8080-exec-8] DEBUG c.h.r.service.JobRequisitionService - Getting requisition count
+2026-07-01 10:23:12 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select count(*) from job_requisition jr1_0
+2026-07-01 10:23:12 [http-nio-8080-exec-8] DEBUG c.h.r.service.InterviewService - Getting interview count
+2026-07-01 10:23:12 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select count(*) from interview i1_0
+2026-07-01 10:23:12 [http-nio-8080-exec-8] DEBUG c.h.recruiter.service.OfferService - Getting offer count
+2026-07-01 10:23:12 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select count(*) from offer_letter o1_0
+2026-07-01 10:23:13 [http-nio-8080-exec-8] DEBUG c.h.r.c.RecruitmentRestController - Dashboard data: {requisitionCount=6, offerCount=1, interviewCount=3, candidateCount=9}
+2026-07-01 10:23:19 [http-nio-8080-exec-10] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:23:20 [http-nio-8080-exec-7] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:23:20 [http-nio-8080-exec-7] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:23:20 [http-nio-8080-exec-9] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:23:20 [http-nio-8080-exec-9] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:23:20 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:23:20 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:23:20 [http-nio-8080-exec-7] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:23:26 [http-nio-8080-exec-2] INFO  c.h.r.c.RecruitmentRestController - Fetching candidate with ID: 2
+2026-07-01 10:23:26 [http-nio-8080-exec-2] DEBUG c.h.r.service.RecruiterService - Retrieving candidate by ID: 2
+2026-07-01 10:23:26 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0 where r1_0.candidate_id=?
+2026-07-01 10:23:34 [http-nio-8080-exec-1] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:23:34 [http-nio-8080-exec-3] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:23:34 [http-nio-8080-exec-3] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:23:34 [http-nio-8080-exec-4] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:23:34 [http-nio-8080-exec-4] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:23:34 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:23:34 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:23:34 [http-nio-8080-exec-3] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:23:34 [http-nio-8080-exec-6] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:23:34 [http-nio-8080-exec-5] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:23:34 [http-nio-8080-exec-5] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:23:34 [http-nio-8080-exec-8] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:23:34 [http-nio-8080-exec-8] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:23:34 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:23:34 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:23:34 [http-nio-8080-exec-5] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:23:39 [http-nio-8080-exec-10] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:23:40 [http-nio-8080-exec-7] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:23:40 [http-nio-8080-exec-7] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:23:40 [http-nio-8080-exec-9] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:23:40 [http-nio-8080-exec-9] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:23:40 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:23:40 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:23:40 [http-nio-8080-exec-7] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:23:47 [http-nio-8080-exec-2] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:23:47 [http-nio-8080-exec-1] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:23:47 [http-nio-8080-exec-1] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:23:47 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:23:47 [http-nio-8080-exec-1] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:23:47 [http-nio-8080-exec-3] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:23:47 [http-nio-8080-exec-3] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:23:47 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:23:51 [http-nio-8080-exec-4] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:23:51 [http-nio-8080-exec-6] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:23:51 [http-nio-8080-exec-6] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:23:51 [http-nio-8080-exec-8] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:23:51 [http-nio-8080-exec-8] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:23:51 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:23:51 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:23:51 [http-nio-8080-exec-6] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:24:15 [http-nio-8080-exec-5] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:24:15 [http-nio-8080-exec-10] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:24:15 [http-nio-8080-exec-10] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:24:15 [http-nio-8080-exec-7] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:24:15 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:24:15 [http-nio-8080-exec-7] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:24:15 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:24:15 [http-nio-8080-exec-10] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:24:16 [http-nio-8080-exec-9] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:24:16 [http-nio-8080-exec-2] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:24:16 [http-nio-8080-exec-2] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:24:16 [http-nio-8080-exec-1] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:24:16 [http-nio-8080-exec-1] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:24:16 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:24:16 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:24:16 [http-nio-8080-exec-2] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:24:40 [http-nio-8080-exec-3] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:24:40 [http-nio-8080-exec-4] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:24:40 [http-nio-8080-exec-4] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:24:40 [http-nio-8080-exec-6] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:24:40 [http-nio-8080-exec-6] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:24:40 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:24:40 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:24:40 [http-nio-8080-exec-4] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:24:40 [http-nio-8080-exec-8] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:24:40 [http-nio-8080-exec-5] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:24:40 [http-nio-8080-exec-5] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:24:40 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:24:40 [http-nio-8080-exec-7] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:24:40 [http-nio-8080-exec-7] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:24:40 [http-nio-8080-exec-5] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:24:40 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:24:42 [http-nio-8080-exec-10] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:24:42 [http-nio-8080-exec-9] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:24:42 [http-nio-8080-exec-9] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:24:42 [http-nio-8080-exec-2] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:24:42 [http-nio-8080-exec-2] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:24:42 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:24:42 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:24:42 [http-nio-8080-exec-9] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:25:00 [http-nio-8080-exec-1] INFO  c.h.r.c.RecruitmentRestController - Fetching candidate with ID: 2
+2026-07-01 10:25:00 [http-nio-8080-exec-1] DEBUG c.h.r.service.RecruiterService - Retrieving candidate by ID: 2
+2026-07-01 10:25:00 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0 where r1_0.candidate_id=?
+2026-07-01 10:25:12 [http-nio-8080-exec-4] INFO  c.h.r.c.RecruitmentRestController - Updating candidate with ID: 2
+2026-07-01 10:25:12 [http-nio-8080-exec-4] DEBUG c.h.r.service.RecruiterService - Retrieving candidate by ID: 2
+2026-07-01 10:25:12 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0 where r1_0.candidate_id=?
+2026-07-01 10:25:12 [http-nio-8080-exec-4] INFO  c.h.r.service.RecruiterService - Updating candidate with ID: 2
+2026-07-01 10:25:13 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - update candidate set applied_role=?,candidate_status=?,experience_years=?,full_name=?,interview_stage=? where candidate_id=?
+2026-07-01 10:25:13 [http-nio-8080-exec-4] INFO  c.h.r.c.RecruitmentRestController - Candidate updated successfully with ID: 2
+2026-07-01 10:25:13 [http-nio-8080-exec-6] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:25:13 [http-nio-8080-exec-6] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:25:13 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:25:13 [http-nio-8080-exec-6] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:25:13 [http-nio-8080-exec-8] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:25:13 [http-nio-8080-exec-5] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:25:13 [http-nio-8080-exec-5] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:25:13 [http-nio-8080-exec-7] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:25:13 [http-nio-8080-exec-7] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:25:13 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:25:13 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:25:13 [http-nio-8080-exec-5] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:25:17 [http-nio-8080-exec-10] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:25:18 [http-nio-8080-exec-9] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:25:18 [http-nio-8080-exec-9] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:25:18 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:25:18 [http-nio-8080-exec-9] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:25:18 [http-nio-8080-exec-2] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:25:18 [http-nio-8080-exec-2] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:25:18 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:31:06 [http-nio-8080-exec-4] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:31:07 [http-nio-8080-exec-6] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:31:07 [http-nio-8080-exec-6] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:31:07 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:31:07 [http-nio-8080-exec-6] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:31:07 [http-nio-8080-exec-8] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:31:07 [http-nio-8080-exec-8] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:31:07 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:31:20 [http-nio-8080-exec-5] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:31:21 [http-nio-8080-exec-7] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:31:21 [http-nio-8080-exec-7] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:31:21 [http-nio-8080-exec-10] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:31:21 [http-nio-8080-exec-10] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:31:21 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:31:21 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:31:21 [http-nio-8080-exec-7] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:31:35 [http-nio-8080-exec-9] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:31:36 [http-nio-8080-exec-2] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:31:36 [http-nio-8080-exec-2] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:31:36 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:31:36 [http-nio-8080-exec-1] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:31:36 [http-nio-8080-exec-1] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:31:36 [http-nio-8080-exec-2] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:31:36 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:31:49 [http-nio-8080-exec-3] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:31:49 [http-nio-8080-exec-4] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:31:49 [http-nio-8080-exec-4] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:31:49 [http-nio-8080-exec-6] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:31:49 [http-nio-8080-exec-6] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:31:49 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:31:49 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:31:49 [http-nio-8080-exec-4] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:32:04 [http-nio-8080-exec-8] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:32:04 [http-nio-8080-exec-5] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:32:04 [http-nio-8080-exec-5] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:32:04 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:32:04 [http-nio-8080-exec-7] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:32:04 [http-nio-8080-exec-7] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:32:04 [http-nio-8080-exec-5] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:32:04 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:32:19 [http-nio-8080-exec-10] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:32:19 [http-nio-8080-exec-9] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:32:19 [http-nio-8080-exec-9] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:32:19 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:32:19 [http-nio-8080-exec-2] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:32:19 [http-nio-8080-exec-2] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:32:20 [http-nio-8080-exec-9] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:32:20 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:32:34 [http-nio-8080-exec-1] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:32:35 [http-nio-8080-exec-3] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:32:35 [http-nio-8080-exec-3] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:32:35 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:32:35 [http-nio-8080-exec-4] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:32:35 [http-nio-8080-exec-4] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:32:35 [http-nio-8080-exec-3] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:32:35 [http-nio-8080-exec-4] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:32:49 [http-nio-8080-exec-6] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:32:49 [http-nio-8080-exec-8] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:32:49 [http-nio-8080-exec-8] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:32:49 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:32:49 [http-nio-8080-exec-5] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:32:49 [http-nio-8080-exec-5] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:32:49 [http-nio-8080-exec-8] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:32:49 [http-nio-8080-exec-5] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:33:04 [http-nio-8080-exec-7] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:33:04 [http-nio-8080-exec-10] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:33:04 [http-nio-8080-exec-10] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:33:05 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:33:05 [http-nio-8080-exec-10] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:33:05 [http-nio-8080-exec-9] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:33:05 [http-nio-8080-exec-9] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:33:05 [http-nio-8080-exec-9] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:33:19 [http-nio-8080-exec-2] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:33:20 [http-nio-8080-exec-1] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:33:20 [http-nio-8080-exec-1] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:33:20 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:33:20 [http-nio-8080-exec-3] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:33:20 [http-nio-8080-exec-3] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:33:20 [http-nio-8080-exec-1] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:33:20 [http-nio-8080-exec-3] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:33:34 [http-nio-8080-exec-4] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:33:35 [http-nio-8080-exec-6] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:33:35 [http-nio-8080-exec-6] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:33:35 [http-nio-8080-exec-8] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:33:35 [http-nio-8080-exec-8] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:33:35 [http-nio-8080-exec-6] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:33:35 [http-nio-8080-exec-8] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:33:35 [http-nio-8080-exec-6] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:33:50 [http-nio-8080-exec-5] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:33:50 [http-nio-8080-exec-7] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:33:50 [http-nio-8080-exec-7] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:33:50 [http-nio-8080-exec-7] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:33:50 [http-nio-8080-exec-7] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:33:50 [http-nio-8080-exec-10] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:33:50 [http-nio-8080-exec-10] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:33:50 [http-nio-8080-exec-10] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:34:05 [http-nio-8080-exec-9] INFO  c.h.r.c.RecruitmentRestController - Health check endpoint called
+2026-07-01 10:34:05 [http-nio-8080-exec-2] INFO  c.h.r.c.RecruitmentRestController - Fetching all candidates
+2026-07-01 10:34:05 [http-nio-8080-exec-2] DEBUG c.h.r.service.RecruiterService - Retrieving all candidates
+2026-07-01 10:34:05 [http-nio-8080-exec-1] INFO  c.h.r.c.RecruitmentRestController - Fetching all job requisitions
+2026-07-01 10:34:05 [http-nio-8080-exec-1] DEBUG c.h.r.service.JobRequisitionService - Retrieving all job requisitions
+2026-07-01 10:34:05 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
+2026-07-01 10:34:05 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
+2026-07-01 10:34:05 [http-nio-8080-exec-2] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
