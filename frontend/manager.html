@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Dashboard</title>
+    <link href="css/payroll.css" rel="stylesheet">
+    <link href="css/employee.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- ══ TOP NAVBAR ══ -->
+    <nav class="topnav">
+        <div class="topnav-inner">
+            <div class="brand">
+                <div class="brand-icon"><i class="bi bi-briefcase-fill"></i></div>
+                <div>
+                    <div class="brand-text">Cognizant HRMS</div>
+                    <div class="brand-sub">Manager Portal</div>
+                </div>
+            </div>
+            <div class="user-chip">
+                <div class="user-avatar">MG</div>
+                <div>
+                    <div class="user-name">Manager</div>
+                    <div class="user-role">Supervisor</div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <!-- Payroll Overview Card -->
+        <div class="card">
+            <h2>Payroll Overview</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Payroll ID</th>
+                        <th>Employee</th>
+                        <th>Pay Period</th>
+                        <th>Gross Salary</th>
+                        <th>Deductions</th>
+                        <th>Net Salary</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="managerPayrollTableBody">
+                    <!-- Rows populated dynamically -->
+                </tbody>
+            </table>
+        </div>
+
+<div class="card">
+  <h2>Leave Applications</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Leave ID</th>
+        <th>Employee ID</th>
+        <th>Leave Type</th>
+        <th>From Date</th>
+        <th>To Date</th>
+        <th>Reason</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody id="leaveApplicationsTableBody">
+      <!-- Rows populated dynamically -->
+    </tbody>
+  </table>
+</div>
+
+
+
+    </div>
+
+    <!-- External JS -->
+    <script src="scripts/manager.js"></script>
+</body>
+
+</html>

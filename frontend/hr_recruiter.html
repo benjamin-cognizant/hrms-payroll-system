@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HRMS - Recruitment Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="css/employee.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container my-4">
+
+    <nav class="topnav">
+        <div class="topnav-inner">
+
+            <div class="brand">
+                <div class="brand-icon"><i class="bi bi-people-fill"></i></div>
+                <div>
+                    <div class="brand-text">Cognizant HRMS</div>
+                    <div class="brand-sub">Employee Portal</div>
+                </div>
+            </div>
+
+            <div class="nav-tabs-hrms">
+                <button class="nav-item active" onclick="showSection('profile', this)">
+                    <i class="bi bi-person-circle"></i> My Profile
+                </button>
+
+            </div>
+
+            <div class="user-chip">
+                <div class="user-avatar">JD</div>
+                <div>
+                    <div class="user-name">John Doe</div>
+                    <div class="user-role">Employee</div>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+
+        <!-- Add Candidate -->
+        <div class="card mb-4">
+            <div class="card-head p-3">
+                <i class="fas fa-user-plus"></i>
+                <h6 class="d-inline-block ms-2">Add New Candidate</h6>
+            </div>
+            <div class="card-body-inner p-3">
+                <form id="candidateForm">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Full Name *</label>
+                            <input type="text" class="form-control" id="fullName" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Applied Role *</label>
+                            <input type="text" class="form-control" id="appliedRole" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Experience Years *</label>
+                            <input type="number" class="form-control" id="experienceYears" min="0" max="50" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Interview Stage *</label>
+                            <input type="text" class="form-control" id="interviewStage" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Status *</label>
+                            <select class="form-select" id="candidateStatus" required>
+                                <option value="APPLIED">Applied</option>
+                                <option value="IN_INTERVIEW">In Interview</option>
+                                <option value="OFFERED">Offered</option>
+                                <option value="HIRED">Hired</option>
+                                <option value="REJECTED">Rejected</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save Candidate
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Create Job Requisition -->
+        <div class="card mb-4">
+            <div class="card-head p-3">
+                <i class="fas fa-briefcase"></i>
+                <h6 class="d-inline-block ms-2">Create Job Requisition</h6>
+            </div>
+            <div class="card-body-inner p-3">
+                <form id="requisitionForm">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Job Title *</label>
+                            <input type="text" class="form-control" id="jobTitle" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Department *</label>
+                            <input type="text" class="form-control" id="department" required>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-control" id="description" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save Requisition
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Schedule Interview -->
+        <div class="card mb-4">
+            <div class="card-head p-3">
+                <i class="fas fa-calendar-alt"></i>
+                <h6 class="d-inline-block ms-2">Schedule Interview</h6>
+            </div>
+            <div class="card-body-inner p-3">
+                <form id="interviewForm">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Candidate *</label>
+                            <input type="number" class="form-control" id="interviewCandidateId" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Interviewer Name *</label>
+                            <input type="text" class="form-control" id="interviewerName" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Interview Date & Time *</label>
+                            <input type="datetime-local" class="form-control" id="interviewDateTime" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Location</label>
+                            <input type="text" class="form-control" id="location">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Schedule Interview
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Rollout Offer -->
+        <div class="card mb-4">
+            <div class="card-head p-3">
+                <i class="fas fa-file-contract"></i>
+                <h6 class="d-inline-block ms-2">Rollout Offer</h6>
+            </div>
+            <div class="card-body-inner p-3">
+                <form id="offerForm">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Candidate ID *</label>
+                            <input type="number" class="form-control" id="offerCandidateId" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Position Offered *</label>
+                            <input type="text" class="form-control" id="positionOffered" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Department *</label>
+                            <input type="text" class="form-control" id="offerDepartment" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Salary *</label>
+                            <input type="number" class="form-control" id="salaryOffered" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Offer Date *</label>
+                            <input type="date" class="form-control" id="offerDate" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Joining Date *</label>
+                            <input type="date" class="form-control" id="joiningDate" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Status *</label>
+                            <select class="form-select" id="offerStatus" required>
+                                <option value="DRAFTED">Drafted</option>
+                                <option value="SENT">Sent</option>
+                                <option value="ACCEPTED">Accepted</option>
+                                <option value="REJECTED">Rejected</option>
+                                <option value="WITHDRAWN">Withdrawn</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Rollout Offer
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    <script src="scripts/hr_recruiter.js"></script>
+</body>
+
+</html>
