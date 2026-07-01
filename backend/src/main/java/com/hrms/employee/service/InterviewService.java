@@ -1,9 +1,9 @@
-package com.hrms.recruiter.service;
+package com.hrms.employee.service;
 
-import com.hrms.recruiter.model.Interview;
-import com.hrms.recruiter.model.Recruiter;
-import com.hrms.recruiter.repository.InterviewRepository;
-import com.hrms.recruiter.repository.RecruiterRepository;
+import com.hrms.employee.model.Interview;
+import com.hrms.employee.model.Recruiter;
+import com.hrms.employee.repository.InterviewRepository;
+import com.hrms.employee.repository.RecruiterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

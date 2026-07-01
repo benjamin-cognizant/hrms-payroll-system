@@ -1,42 +1,81 @@
 package com.hrms.employee.controller;
 
+import com.hrms.employee.dto.LoginResponse;
 import com.hrms.employee.model.User;
-import com.hrms.employee.service.UserService;
+import com.hrms.employee.security.JwtUtil;
+import com.hrms.employee.service.UserDetailsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.*;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
-@RequestMapping("/api/login")
+@RequestMapping("/api/auth")
 public class LoginController {
 
-    private final UserService userService; // service to validate credentials
+    private final UserDetailsService userService;
+    private final JwtUtil jwtUtil;
+    private final AuthenticationManager authenticationManager;
 
     @Autowired
-    public LoginController(UserService userService) {
+    public LoginController(UserDetailsService userService, JwtUtil jwtUtil, AuthenticationManager authenticationManager) {
         this.userService = userService;
+        this.jwtUtil = jwtUtil;
+        this.authenticationManager = authenticationManager;
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestParam String loginname,
-                                   @RequestParam String password) {
-        log.info("Login attempt for user: {}", loginname);
+    public ResponseEntity<?> login(@RequestParam String username, @RequestParam String password) {
+        log.info("Login attempt for user: {}", username);
+        try {
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(username, password)
+            );
 
-        User user = userService.authenticate(loginname, password);
-        if (user == null) {
-            log.warn("Invalid login for user: {}", loginname);
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
-        }
+            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+            String token = jwtUtil.generateToken(userDetails);
 
-        // Decide redirect based on role
-        if ("EMPLOYEE".equalsIgnoreCase(user.getRole())) {
-            return ResponseEntity.ok("/employee.html");
-        } else if ("HR_RECRUITER".equalsIgnoreCase(user.getRole())) {
-            return ResponseEntity.ok("/hr_recruiter.html");
-        } else {
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Role not supported");
+            User user = userService.findByUsername(username);
+            String role = user.getRole();
+            String redirectUrl;
+
+            if ("ROLE_EMPLOYEE".equals(role)) {
+                redirectUrl = "/employee.html";
+            } else if ("ROLE_HR_RECRUITER".equals(role)) {
+                redirectUrl = "/hr_recruiter.html";
+            } else if ("ROLE_PAYROLL_OFFICER".equals(role)) {
+                redirectUrl = "/payroll.html";
+            } else if ("ROLE_MANAGER".equals(role)) {
+                redirectUrl = "/manager.html";
+            } else if ("ROLE_ADMIN".equals(role)) {
+                redirectUrl = "/admin.html";
+            } else {
+                redirectUrl = "/index.html"; // fallback if role is unknown
+            }
+
+            log.info("User logged in successfully: {}", username);
+            return ResponseEntity.ok(new LoginResponse(token, redirectUrl, role));
+        } catch (AuthenticationException e) {
+            log.warn("Invalid login attempt for user: {}", username);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(new LoginResponse(null, null, "Invalid username or password"));
+        } catch (Exception e) {
+            log.error("Error during login", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new LoginResponse(null, null, "An error occurred during login"));
         }
+    }
+
+    @GetMapping("/validate")
+    public ResponseEntity<?> validateToken() {
+        log.info("Token validation endpoint accessed");
+        return ResponseEntity.ok(new LoginResponse(null, null, "Token is valid"));
     }
 }

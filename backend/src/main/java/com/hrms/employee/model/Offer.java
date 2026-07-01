@@ -1,4 +1,4 @@
-package com.hrms.recruiter.model;
+package com.hrms.employee.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;

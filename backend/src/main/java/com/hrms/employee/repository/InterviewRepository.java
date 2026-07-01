@@ -1,6 +1,6 @@
-package com.hrms.recruiter.repository;
+package com.hrms.employee.repository;
 
-import com.hrms.recruiter.model.Interview;
+import com.hrms.employee.model.Interview;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

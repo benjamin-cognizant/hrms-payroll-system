@@ -1,10 +1,9 @@
-package com.hrms.recruiter.service;
-import com.hrms.recruiter.model.JobRequisition;
-import com.hrms.recruiter.repository.JobRequisitionRepository;
+package com.hrms.employee.service;
+import com.hrms.employee.model.JobRequisition;
+import com.hrms.employee.repository.JobRequisitionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 @Service
 public class JobRequisitionService {
