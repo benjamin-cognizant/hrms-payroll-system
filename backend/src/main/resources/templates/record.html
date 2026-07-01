@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Payroll Records</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f9;
+            margin: 0;
+            padding: 40px;
+            color: #333;
+        }
+
+
+        .table-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            margin-top: 0;
+        }
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+
+        thead {
+            background-color: #2c3e50;
+            color: #ffffff;
+        }
+
+        th {
+            padding: 12px 15px;
+            text-align: left;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 14px;
+        }
+
+
+        tbody tr:nth-of-type(even) {
+            background-color: #f9fbfd;
+        }
+
+
+        tbody tr:hover {
+            background-color: #f1f5f9;
+            transition: background-color 0.2s ease;
+        }
+        .status {
+            font-weight: bold;
+            color: #2980b9;
+        }
+        .btn-container {
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .btn-back {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-back:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="table-container">
+    <h2>Payroll Records</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Payroll ID</th>
+            <th>Employee ID</th>
+            <th>Pay Period</th>
+            <th>Gross Salary</th>
+            <th>Deductions</th>
+            <th>Net Salary</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="p : ${payrolls}">
+            <td th:text="${p.payrollId}"></td>
+            <td th:text="${p.employeeId}"></td>
+            <td th:text="${p.payPeriod}"></td>
+            <td th:text="${p.grossSalary}"></td>
+            <td th:text="${p.totalDeductions}"></td>
+            <td th:text="${p.netSalary}"></td>
+<!--            <td class="status" th:text="${p.status}"></td>-->
+            <td>
+
+        <span th:text="${p.status}"
+              th:style="${p.status == T(com.hrms.payroll.model.Status).PAID} ? 'color: green; font-weight: bold;' : 'color: red; font-weight: bold;'">
+        </span>
+            </td>
+
+            <td>
+                <a th:if="${p.status == T(com.hrms.payroll.model.Status).PAID}"
+                   th:href="@{/payslip(employeeId=${p.employeeId})}"
+                   style="color: #27ae60; font-weight: bold; text-decoration: none;">📄 View Payslip</a>
+
+                <a th:unless="${p.status == T(com.hrms.payroll.model.Status).PAID}"
+                   th:href="@{/payslip/markAsPaid(employeeId=${p.employeeId})}">
+                    <button type="submit" style="background-color: #e67e22; color: white; padding: 5px 10px; border-radius: 4px; text-decoration: none; font-size: 12px;">💳Accept & Pay</button>
+                </a>
+            </td>
+
+
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="btn-container">
+        <a th:href="@{/form}" class="btn-back">Back</a>
+    </div>
+
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Salary Summary</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            display: flex;
+            justify-content: upper left;
+            align-items: left;
+            height: 50vh;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+            width: 350px;
+            text-align: left;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .row {
+            margin: 15px 0;
+            font-size: 18px;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .value {
+            float: right;
+            color: #000;
+        }
+
+        .gross {
+            color: #2e86de;
+        }
+
+        .deduction {
+            color: #e74c3c;
+        }
+
+        .net {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .btn {
+            margin-top: 20px;
+             text-align: right;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            background: #3498db;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1>Salary Summary</h1>
+
+    <div class="row">
+        <span class="label">Gross Salary:</span>
+        <span class="value deduction" th:text="${#numbers.formatDecimal(grossSalary, 1, 'COMMA', 2, 'POINT')}"></span>
+    </div>
+
+    <div class="row">
+        <span class="label">Deduction:</span>
+        <span class="value deduction" th:text="${#numbers.formatDecimal(deduct, 1, 'COMMA', 2, 'POINT')}"></span>
+    </div>
+
+
+
+    <div class="row">
+        <span class="label">Net Salary:</span>
+        <span class="value net" th:text="${netSalary}"></span>
+    </div>
+
+    <div class="btn">
+        <a href="/form">
+            <button>Back</button>
+        </a>
+    </div>
+
+
+</div>
+
+
+</body>
+</html>

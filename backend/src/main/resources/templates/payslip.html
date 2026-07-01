@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Payslip</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            padding: 40px;
+        }
+        .payslip-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            border-bottom: 2px solid #2c3e50;
+            padding-bottom: 10px;
+        }
+        .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .total-row {
+            font-weight: bold;
+            color: #27ae60;
+            font-size: 18px;
+        }
+        .btn-print {
+            display: block;
+            width: 100px;
+            margin: 20px auto 0;
+            padding: 10px;
+            text-align: center;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="payslip-container">
+    <h2>PAYSLIP</h2>
+
+    <div class="row">
+        <span><strong>Payroll ID:</strong></span>
+        <span th:text="${payroll.payrollId}"></span>
+    </div>
+    <div class="row">
+        <span><strong>Employee ID:</strong></span>
+        <span th:text="${payroll.employeeId}"></span>
+    </div>
+    <div class="row">
+        <span><strong>Pay Period:</strong></span>
+        <span th:text="${payroll.payPeriod}"></span>
+    </div>
+    <div class="row">
+        <span><strong>Gross Salary:</strong></span>
+        <span th:text="${payroll.grossSalary}"></span>
+    </div>
+    <div class="row" style="color: #c0392b;">
+        <span><strong>Total Deductions:</strong></span>
+        <span th:text="${payroll.totalDeductions}"></span>
+    </div>
+    <div class="row total-row">
+        <span><strong>Net Salary:</strong></span>
+        <span th:text="${payroll.netSalary}"></span>
+    </div>
+    <div class="row">
+        <span><strong>Payment Status:</strong></span>
+        <span style="color: green; font-weight: bold;" th:text="${payroll.status}"></span>
+    </div>
+
+    <a href="/form" class="btn-print">Back</a>
+</div>
+
+</body>
+</html>

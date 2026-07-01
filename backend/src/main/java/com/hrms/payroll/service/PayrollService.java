@@ -1,9 +1,9 @@
-package com.employeee.duplicate.service;
+package com.hrms.payroll.service;
 
-import com.employeee.duplicate.model.*;
-import com.employeee.duplicate.repository.AttendanceRepository;
-import com.employeee.duplicate.repository.EmployeeRepository;
-import com.employeee.duplicate.repository.PayrollRepository;
+import com.hrms.payroll.model.*;
+import com.hrms.payroll.repository.AttendanceRepository;
+import com.hrms.payroll.repository.EmployeeRepository;
+import com.hrms.payroll.repository.PayrollRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

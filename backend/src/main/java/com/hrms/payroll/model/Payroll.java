@@ -6,8 +6,10 @@ import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
 @Entity
+@Data
 public class Payroll {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,67 +63,67 @@ public class Payroll {
 
 
 
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-
-        this.status = status;
-    }
-
-    public int getPayrollId() {
-
-        return payrollId;
-    }
-
-    public void setPayrollId(int payrollId) {
-
-        this.payrollId = payrollId;
-    }
-
-    public String getEmployeeId() {
-
-        return employeeId;
-    }
-
-    public void setEmployeeId(String employeeId) {
-
-        this.employeeId = employeeId;
-    }
-
-    public String getPayPeriod() {
-
-        return payPeriod;
-    }
-
-    public void setPayPeriod(String payPeriod)
-    {
-        this.payPeriod = payPeriod;
-    }
-
-    public double getGrossSalary() {
-        return grossSalary;
-    }
-
-    public void setGrossSalary(double grossSalary) {
-        this.grossSalary = grossSalary;
-    }
-
-    public double getTotalDeductions() {
-        return totalDeductions;
-    }
-
-    public void setTotalDeductions(double totalDeductions) {
-        this.totalDeductions = totalDeductions;
-    }
-
-    public double getNetSalary() {
-        return netSalary;
-    }
-
-    public void setNetSalary(double netSalary) {
-        this.netSalary = netSalary;
-    }
+//    public Status getStatus() {
+//        return status;
+//    }
+//
+//    public void setStatus(Status status) {
+//
+//        this.status = status;
+//    }
+//
+//    public int getPayrollId() {
+//
+//        return payrollId;
+//    }
+//
+//    public void setPayrollId(int payrollId) {
+//
+//        this.payrollId = payrollId;
+//    }
+//
+//    public String getEmployeeId() {
+//
+//        return employeeId;
+//    }
+//
+//    public void setEmployeeId(String employeeId) {
+//
+//        this.employeeId = employeeId;
+//    }
+//
+//    public String getPayPeriod() {
+//
+//        return payPeriod;
+//    }
+//
+//    public void setPayPeriod(String payPeriod)
+//    {
+//        this.payPeriod = payPeriod;
+//    }
+//
+//    public double getGrossSalary() {
+//        return grossSalary;
+//    }
+//
+//    public void setGrossSalary(double grossSalary) {
+//        this.grossSalary = grossSalary;
+//    }
+//
+//    public double getTotalDeductions() {
+//        return totalDeductions;
+//    }
+//
+//    public void setTotalDeductions(double totalDeductions) {
+//        this.totalDeductions = totalDeductions;
+//    }
+//
+//    public double getNetSalary() {
+//        return netSalary;
+//    }
+//
+//    public void setNetSalary(double netSalary) {
+//        this.netSalary = netSalary;
+//    }
 }
 

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Run Payroll</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 15px rgba(0,0,0,0.1);
+            width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 6px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            gap: 5px;
+        }
+
+        button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            color: white;
+        }
+
+        .submit { background-color: #2ecc71; }
+        .deduct { background-color: #e67e22; }
+        .view   { background-color: #3498db; }
+
+        button:hover { opacity: 0.9; }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Run Payroll</h2>
+
+    <form th:object="${record}" method="post">
+
+        <label>Employee Id</label>
+        <input type="number" th:field="*{employeeId}" required/>
+
+        <label>Pay Period</label>
+        <select th:field="*{payPeriod}" required>
+            <option value="">-- Select Month --</option>
+            <option value="JAN-2026">January 2026</option>
+            <option value="FEB-2026">February 2026</option>
+            <option value="MAR-2026">March 2026</option>
+            <option value="APR-2026">April 2026</option>
+            <option value="MAY-2026">May 2026</option>
+            <option value="JUNE-2026">June 2026</option>
+            <option value="JULY-2026">July 2026</option>
+            <option value="AUG-2026">August 2026</option>
+            <option value="SEP-2026">September 2026</option>
+            <option value="OCT-2026">October 2026</option>
+            <option value="NOV-2026">November 2026</option>
+            <option value="DEC-2026">December 2026</option>
+        </select>
+
+        <label>Gross Salary</label>
+        <input type="number" th:field="*{grossSalary}" />
+        <span th:if="${#fields.hasErrors('grossSalary')}" th:errors="*{grossSalary}" style="color: red;"></span>
+        <label>Status</label>
+        <select th:field="*{status}" required>
+            <option value="">-- Select Status --</option>
+            <option th:each="s : ${key}" th:value="${s}" th:text="${s}">
+            </option>
+        </select>
+
+        <div class="buttons">
+            <button class="submit" type="submit" th:formaction="@{/run}">Submit</button>
+            <button class="deduct" type="submit" th:formaction="@{/deductions}">Deduct</button>
+            <button class="view" type="submit" th:formaction="@{/payrolls}" formmethod="get" formnovalidate>View</button>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>

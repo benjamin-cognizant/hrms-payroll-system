@@ -10,12 +10,11 @@ import java.util.List;
 @Repository
 public interface PayrollRepository extends JpaRepository<Payroll,Integer> {
 
-    Payroll findByEmployeeId(Long employeeId);
+    Payroll findTopByEmployeeIdOrderByPayrollIdDesc(Long employeeId);
 
-//    @Query("SELECT SUM(p.netSalary) FROM Payroll p")
-//    Double calculateTotalNetPayroll();
-//
-//
-//    @Query("SELECT AVG(p.netSalary) FROM Payroll p")
-//    Double calculateAverageNetSalary();
+    List<Payroll> findByPayPeriod(String payPeriod);
+
+
+    boolean existsByEmployee_IdAndPayPeriod(Long employeeId, String payPeriod);
+
 }
