@@ -910,3 +910,4 @@
 2026-07-01 10:34:05 [http-nio-8080-exec-2] DEBUG org.hibernate.SQL - select r1_0.candidate_id,r1_0.applied_role,r1_0.candidate_status,r1_0.experience_years,r1_0.full_name,r1_0.interview_stage from candidate r1_0
 2026-07-01 10:34:05 [http-nio-8080-exec-1] DEBUG org.hibernate.SQL - select jr1_0.requisition_id,jr1_0.department,jr1_0.description,jr1_0.job_title,jr1_0.number_of_positions,jr1_0.priority,jr1_0.requisition_date,jr1_0.status from job_requisition jr1_0
 2026-07-01 10:34:05 [http-nio-8080-exec-2] DEBUG c.h.r.c.RecruitmentRestController - Found 9 candidates
+2026-07-01 10:37:13 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m15s753ms91µs900ns).
